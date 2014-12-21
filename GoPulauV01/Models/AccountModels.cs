@@ -88,6 +88,12 @@ namespace GoPulauV01.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class CustomRegisterModel
+    {
+        public RegisterModel LoginModel { get; set; }
+        public Member MemberModel { get; set; }
+    }
+
     public class ExternalLogin
     {
         public string Provider { get; set; }

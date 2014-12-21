@@ -72,15 +72,22 @@ namespace GoPulauV01.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register(CustomRegisterModel model)
         {
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
+                    WebSecurity.CreateUserAndAccount(model.LoginModel.UserName, model.LoginModel.Password);
+                    //TODO move to service agent
+                    using (var db = new UsersContext())
+                    {
+                        int userId = db.UserProfiles.Single(m => m.UserName == model.LoginModel.UserName).UserId;
+                        
+                    }
+
+                    WebSecurity.Login(model.LoginModel.UserName, model.LoginModel.Password);
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
