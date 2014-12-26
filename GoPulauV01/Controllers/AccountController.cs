@@ -84,7 +84,14 @@ namespace GoPulauV01.Controllers
                     using (var db = new UsersContext())
                     {
                         int userId = db.UserProfiles.Single(m => m.UserName == model.LoginModel.UserName).UserId;
-                        
+                        model.MemberModel.UserId = userId;
+                        model.MemberModel.CreatedDateTime = DateTime.Now;
+                        model.MemberModel.ModifiedDateTime = DateTime.Now;
+                        model.MemberModel.CreatedUserId = userId;//TODO - set to 0
+                        model.MemberModel.ModifiedUserId = userId;//TODO - set to 0
+                        var dbMember = new MemberContext();
+                        dbMember.Member.Add(model.MemberModel);
+                        dbMember.SaveChanges();
                     }
 
                     WebSecurity.Login(model.LoginModel.UserName, model.LoginModel.Password);

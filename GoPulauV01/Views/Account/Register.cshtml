@@ -10,12 +10,67 @@
 </hgroup>
 
 @using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
-
     <fieldset>
         <legend>Registration Form</legend>
         <ol>
+            <li>
+                @Html.LabelFor(m => m.MemberModel.Name)
+                @Html.TextBoxFor(m => m.MemberModel.Name)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MemberModel.Ic_Passport)
+                @Html.TextBoxFor(m => m.MemberModel.Ic_Passport)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MemberModel.Gender)
+                @Html.TextBoxFor(m => m.MemberModel.Gender)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MemberModel.Dob)
+                @Html.TextBoxFor(m => m.MemberModel.Dob)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MemberModel.Race)
+                @Html.TextBoxFor(m => m.MemberModel.Race)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MemberModel.Religion)
+                @Html.TextBoxFor(m => m.MemberModel.Religion)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MemberModel.Occupation)
+                @Html.TextBoxFor(m => m.MemberModel.Occupation)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MemberModel.Address)
+                @Html.TextBoxFor(m => m.MemberModel.Address)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MemberModel.PostalCode)
+                @Html.TextBoxFor(m => m.MemberModel.PostalCode)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MemberModel.State)
+                @Html.TextBoxFor(m => m.MemberModel.State)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MemberModel.Country)
+                @Html.TextBoxFor(m => m.MemberModel.Country)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MemberModel.PhoneNo)
+                @Html.TextBoxFor(m => m.MemberModel.PhoneNo)
+            </li>
+
+            @*<li>
+                @Html.LabelFor(m => m.MemberModel.Email)
+                @Html.TextBoxFor(m => m.MemberModel.Email)
+            </li>
+
+            <li>
+                @Html.LabelFor(m => m.LoginModel.UserName)
+                @Html.TextBoxFor(m => m.LoginModel.UserName)
+            </li>*@
             <li>
                 @Html.LabelFor(m => m.LoginModel.UserName)
                 @Html.TextBoxFor(m => m.LoginModel.UserName)
@@ -31,6 +86,8 @@
         </ol>
         <input type="submit" value="Register" />
     </fieldset>
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
 }
 
 @section Scripts {

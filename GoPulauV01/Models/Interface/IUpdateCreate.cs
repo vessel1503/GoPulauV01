@@ -7,11 +7,11 @@ namespace GoPulauV01.Models.Interface
 {
     internal interface IUpdateCreate
     {
-        string CreatedUserName { get; set; }
-        string CreatedDateTime { get; set; }
+        int CreatedUserId { get; set; }
+        DateTime CreatedDateTime { get; set; }
 
-        string ModifiedUserName { get; set; }
+        int ModifiedUserId { get; set; }
 
-        string ModifiedDateTime { get; set; }
+        DateTime ModifiedDateTime { get; set; }
     }
 }
