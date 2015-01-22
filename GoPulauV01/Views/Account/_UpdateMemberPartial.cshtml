@@ -1,25 +1,22 @@
-﻿@model GoPulauV01.Models.CustomRegisterModel
+﻿@model GoPulauV01.Models.CustomMemberUpdateModel
 
-@{
-    ViewBag.Title = "Register";
-}
+<h3>Update Member Info</h3>
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>Create a new account.</h2>
-</hgroup>
+@using (Html.BeginForm("UpdateMember", "Account"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
 
-@using (Html.BeginForm()) {
     <fieldset>
-        <legend>Registration Form</legend>
-        <div class="register-form">
+        <legend>Update Member Info Form</legend>
+        <div>
             <div class="data-row">
                 <div class="data-column-title">
                     @Html.LabelFor(m => m.MemberModel.Name)
                 </div>
                 <div class="data-column-input">
                     @Html.TextBoxFor(m => m.MemberModel.Name)
-                </div>                
+                </div>
             </div>
             <div class="data-row">
                 <div class="data-column-title">
@@ -27,7 +24,7 @@
                 </div>
                 <div class="data-column-input">
                     @Html.TextBoxFor(m => m.MemberModel.Ic_Passport)
-                </div>                
+                </div>
             </div>
             <div class="data-row">
                 <div class="data-column-title">
@@ -36,9 +33,9 @@
                 <div class="data-column-input">
                     @Html.RadioButtonFor(m => m.MemberModel.Gender, "M", new { id = "radMemberGenderMale", @class = "radio-member-gender", name = "gender", Checked = "checked" })
                     @Html.Label("radMemberGenderMale", "Male")
-                    @Html.RadioButtonFor(m => m.MemberModel.Gender, "F", new { id = "radMemberGenderFemale", @class = "radio-member-gender", name="gender" })
+                    @Html.RadioButtonFor(m => m.MemberModel.Gender, "F", new { id = "radMemberGenderFemale", @class = "radio-member-gender", name = "gender" })
                     @Html.Label("radMemberGenderFemale", "Female")
-                </div>                
+                </div>
             </div>
             <div class="data-row">
                 <div class="data-column-title">
@@ -46,7 +43,7 @@
                 </div>
                 <div class="data-column-input">
                     @Html.TextBoxFor(m => m.MemberModel.Dob)
-                </div>                
+                </div>
             </div>
             <div class="data-row">
                 <div class="data-column-title">
@@ -55,13 +52,13 @@
                 <div class="data-column-input">
                     @Html.RadioButtonFor(m => m.MemberModel.Race, "Malay", new { id = "radMemberRaceMalay", name = "race", Checked = "checked" })
                     @Html.Label("radMemberRaceMalay", "Malay")
-                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Chinese", new { id = "radMemberRaceChinese", name="race" })
+                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Chinese", new { id = "radMemberRaceChinese", name = "race" })
                     @Html.Label("radMemberRaceChinese", "Chinese")
                     @Html.RadioButtonFor(m => m.MemberModel.Race, "Indian", new { id = "radMemberRaceIndian", name = "race" })
                     @Html.Label("radMemberRaceIndian", "Indian")
                     @Html.RadioButtonFor(m => m.MemberModel.Race, "Others", new { id = "radMemberRaceOthers", name = "race" })
                     @Html.Label("radMemberRaceOthers", "Others")
-                </div>                
+                </div>
             </div>
             <div class="data-row">
                 <div class="data-column-title">
@@ -69,7 +66,7 @@
                 </div>
                 <div class="data-column-input">
                     @Html.TextBoxFor(m => m.MemberModel.Religion)
-                </div>                
+                </div>
             </div>
             <div class="data-row">
                 <div class="data-column-title">
@@ -77,7 +74,7 @@
                 </div>
                 <div class="data-column-input">
                     @Html.TextBoxFor(m => m.MemberModel.Occupation)
-                </div>               
+                </div>
             </div>
             <div class="data-row">
                 <div class="data-column-title">
@@ -85,7 +82,7 @@
                 </div>
                 <div class="data-column-input">
                     @Html.TextBoxFor(m => m.MemberModel.Address)
-                </div>                
+                </div>
             </div>
             <div class="data-row">
                 <div class="data-column-title">
@@ -93,7 +90,7 @@
                 </div>
                 <div class="data-column-input">
                     @Html.TextBoxFor(m => m.MemberModel.PostalCode)
-                </div>                
+                </div>
             </div>
             <div class="data-row">
                 <div class="data-column-title">
@@ -101,7 +98,7 @@
                 </div>
                 <div class="data-column-input">
                     @Html.TextBoxFor(m => m.MemberModel.State)
-                </div>                
+                </div>
             </div>
             <div class="data-row">
                 <div class="data-column-title">
@@ -109,7 +106,7 @@
                 </div>
                 <div class="data-column-input">
                     @Html.TextBoxFor(m => m.MemberModel.Country)
-                </div>                
+                </div>
             </div>
             <div class="data-row">
                 <div class="data-column-title">
@@ -117,86 +114,9 @@
                 </div>
                 <div class="data-column-input">
                     @Html.TextBoxFor(m => m.MemberModel.PhoneNo)
-                </div>                
-            </div>
-            <br />
-            <hr />
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.LoginModel.UserName)
                 </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.LoginModel.UserName)
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.LoginModel.Password)
-                </div>
-                <div class="data-column-input">
-                    @Html.PasswordFor(m => m.LoginModel.Password)
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.LoginModel.ConfirmPassword)
-                </div>
-                <div class="data-column-input">
-                    @Html.PasswordFor(m => m.LoginModel.ConfirmPassword)
-                </div>                
             </div>
         </div>
-        <input type="submit" value="Register" />
+        <input type="submit" value="Update" />
     </fieldset>
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
 }
-
-@*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@
-
-<style type="text/css">
-    input[type=radio] {
-        width: auto;
-        margin-right: 10px;
-        float: left;
-    }
-    input[type=radio] + label {
-        width:auto;
-        float: left;
-        margin-right:20px;
-    }
-    input[type=text]{
-        margin:0px;
-    }
-    input[type=password]{
-        margin:0px;
-    }
-
-
-    .radio-member-gender{
-
-    }
-
-    .register-form{
-        font-size:14px;
-        font-family:'Segoe UI'
-    }
-    .data-row{
-        position:relative;
-        width:100%;
-    }
-    .data-column-title{
-        width:30%;
-        position:relative;
-        float:left;
-        padding:1px 0px;
-    }
-    .data-column-input{
-        width:70%;
-        position:relative;
-        float:left;
-        padding:1px 0px;
-    }
-</style>

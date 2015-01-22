@@ -38,7 +38,7 @@ namespace GoPulauV01.Filters
                         }
                     }
 
-                    WebSecurity.InitializeDatabaseConnection("GoPulauDBTesting", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("GoPulauDB", "UserProfile", "UserId", "UserName", autoCreateTables: true);
                 }
                 catch (Exception ex)
                 {

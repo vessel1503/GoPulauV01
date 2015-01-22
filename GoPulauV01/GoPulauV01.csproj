@@ -193,6 +193,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\GoPulauDB.mdf" />
+    <Content Include="App_Data\GoPulauDB_log.ldf">
+      <DependentUpon>GoPulauDB.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\jQueryUI\jquery-ui.css" />
+    <Content Include="Content\jQueryUI\jquery-ui.min.css" />
+    <Content Include="Content\jQueryUI\jquery-ui.structure.css" />
+    <Content Include="Content\jQueryUI\jquery-ui.structure.min.css" />
+    <Content Include="Content\jQueryUI\jquery-ui.theme.css" />
+    <Content Include="Content\jQueryUI\jquery-ui.theme.min.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -250,12 +260,15 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\GoPulauV01.pubxml" />
+    <Content Include="Scripts\jquery-2.1.3.min.map" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\jquery-2.1.3.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.2.js" />
+    <Content Include="Scripts\jquery-ui-1.11.2.min.js" />
+    <Content Include="Scripts\underscore-min.js" />
+    <Content Include="Scripts\underscore.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-ui-1.8.24.js" />
-    <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -265,7 +278,9 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -304,9 +319,12 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Account\UpdateMember.cshtml" />
+    <Content Include="Views\Account\_UpdateMemberPartial.cshtml" />
+    <Content Include="Views\Shared\_Scripts.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Scripts\App\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

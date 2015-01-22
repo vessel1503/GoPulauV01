@@ -4,9 +4,19 @@
         <meta charset="utf-8" />
         <title>@ViewBag.Title - My ASP.NET MVC Application</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+        <link href="~/Content/jQueryUI/jquery-ui.css" rel="stylesheet" />
+        <link href="~/Content/jQueryUI/jquery-ui.min.css" rel="stylesheet" />
+        <link href="~/Content/jQueryUI/jquery-ui.structure.css" rel="stylesheet" />
+        <link href="~/Content/jQueryUI/jquery-ui.structure.min.css" rel="stylesheet" />
+        <link href="~/Content/jQueryUI/jquery-ui.theme.css" rel="stylesheet" />
+        <link href="~/Content/jQueryUI/jquery-ui.theme.min.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @RenderSection("scripts", required: false)
     </head>
     <body>
         <header>
@@ -42,7 +52,6 @@
             </div>
         </footer>
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
+        
     </body>
 </html>

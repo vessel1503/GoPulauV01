@@ -156,8 +156,9 @@ namespace GoPulauV01.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Manage(LocalPasswordModel model)
+        public ActionResult Manage(CustomMemberUpdateModel customModel)
         {
+            LocalPasswordModel model = customModel.localPasswordModel;
             bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.HasLocalPassword = hasLocalAccount;
             ViewBag.ReturnUrl = Url.Action("Manage");
@@ -211,9 +212,16 @@ namespace GoPulauV01.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View(customModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateMember(CustomMemberUpdateModel model)
+        {
+            Member member = model.MemberModel;
+            return View();
+        }
         //
         // POST: /Account/ExternalLogin
 

@@ -12,7 +12,7 @@ namespace GoPulauV01.Models
     public class MemberContext : DbContext
     {
         public MemberContext()
-            : base("GoPulauDBTesting")
+            : base("GoPulauDB")
         {
         }
 

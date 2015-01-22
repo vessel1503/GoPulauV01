@@ -11,7 +11,7 @@ namespace GoPulauV01.Models
     public class UsersContext : DbContext
     {
         public UsersContext()
-            : base("GoPulauDBTesting")
+            : base("GoPulauDB")
         {
         }
 
@@ -86,6 +86,12 @@ namespace GoPulauV01.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class CustomMemberUpdateModel
+    {
+        public LocalPasswordModel localPasswordModel { get; set; }
+        public Member MemberModel { get; set; }
     }
 
     public class CustomRegisterModel
