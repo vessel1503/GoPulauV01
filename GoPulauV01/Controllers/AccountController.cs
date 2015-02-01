@@ -10,6 +10,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using GoPulauV01.Filters;
 using GoPulauV01.Models;
+using System.Net;
 
 namespace GoPulauV01.Controllers
 {
@@ -141,14 +142,42 @@ namespace GoPulauV01.Controllers
 
         public ActionResult Manage(ManageMessageId? message)
         {
+            var currentUserId = WebSecurity.GetUserId(User.Identity.Name);
+            CustomMemberUpdateModel member = new CustomMemberUpdateModel();
+            using (var dbMember = new MemberContext())
+            {
+                var currentMember = dbMember.Member.Find(currentUserId);                
+                member.MemberModel = currentMember;
+            }
+
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : "";
-            ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
+            ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(currentUserId);
             ViewBag.ReturnUrl = Url.Action("Manage");
-            return View();
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem
+            {
+                Text = "Wilayah Kuala Lumpur",
+                Value = "KUL"
+            });
+            items.Add(new SelectListItem
+            {
+                Text = "Selangor",
+                Value = "SEL"
+            });
+            items.Add(new SelectListItem
+            {
+                Text = "Pahang",
+                Value = "PHG"
+            });
+
+            ViewData["States"] = items;
+
+            return View(member);
         }
 
         //
@@ -219,11 +248,39 @@ namespace GoPulauV01.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UpdateMember(CustomMemberUpdateModel model)
         {
-            Member member = model.MemberModel;
-            return View();
+            var localMember = model.MemberModel;
+            using( var dbMember = new MemberContext()){
+                Member member = dbMember.Member.Find(localMember.MemberId);
+                if (member != null)
+                {
+                    member.Name = localMember.Name;
+                    member.Occupation = localMember.Occupation;
+                    member.PhoneNo = localMember.PhoneNo;
+                    member.Race = localMember.Race;
+                    member.Religion = localMember.Religion;
+                    member.Ic_Passport = localMember.Ic_Passport;
+                    member.Address = localMember.Address;
+                    member.PostalCode = localMember.PostalCode;
+                    member.State = localMember.State;
+                    member.Country = localMember.Country;
+                    member.Dob = localMember.Dob;
+                    member.Gender = localMember.Gender;
+                    dbMember.SaveChanges();
+                }
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
         //
         // POST: /Account/ExternalLogin
+
+
+        public ActionResult MyOrder()
+        {
+            return View();
+        }
+
+
 
         [HttpPost]
         [AllowAnonymous]

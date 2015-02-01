@@ -5,10 +5,11 @@
 @using (Html.BeginForm("UpdateMember", "Account"))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
+    @*@Html.ValidationSummary()*@
 
     <fieldset>
         <legend>Update Member Info Form</legend>
+        @Html.HiddenFor(m => m.MemberModel.MemberId)
         <div>
             <div class="data-row">
                 <div class="data-column-title">
@@ -65,7 +66,12 @@
                     @Html.LabelFor(m => m.MemberModel.Religion)
                 </div>
                 <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Religion)
+                    @Html.DropDownListFor(m => m.MemberModel.Religion, new List<SelectListItem>{
+                                        new SelectListItem { Text="Islam", Value="ISL" },
+                                        new SelectListItem { Text="Buddhism", Value="BUD" },
+                                        new SelectListItem { Text="Hinduism", Value="HIN" },
+                                        new SelectListItem { Text="Others", Value="OTH" },
+                    }, "Select Religion")
                 </div>
             </div>
             <div class="data-row">
@@ -97,7 +103,23 @@
                     @Html.LabelFor(m => m.MemberModel.State)
                 </div>
                 <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.State)
+                    @*@Html.TextBoxFor(m => m.MemberModel.State)*@
+                    @Html.DropDownListFor(m => m.MemberModel.State, new List<SelectListItem>{
+                                        new SelectListItem { Text="Johor", Value="JHR" },
+                                        new SelectListItem { Text="Kedah", Value="KDH" },
+                                        new SelectListItem { Text="Kelantan", Value="KLT" },
+                                        new SelectListItem { Text="Kuala Lumpur", Value="KUL"},
+                                        new SelectListItem { Text="Melaka", Value="MLK" },
+                                        new SelectListItem { Text="Pahang", Value="PHG" },
+                                        new SelectListItem { Text="Penang", Value="PNG" },
+                                        new SelectListItem { Text="Perak", Value="PRK" },
+                                        new SelectListItem { Text="Perlis", Value="PLS" },
+                                        new SelectListItem { Text="Sabah", Value="SBH" },
+                                        new SelectListItem { Text="Sarawak", Value="SRW" },
+                                        new SelectListItem { Text="Selangor", Value="SLG" },
+                                        new SelectListItem { Text="Seremban", Value="SRB" },
+                                        new SelectListItem { Text="Terengganu", Value="TRG" }
+                    }, "Select State")
                 </div>
             </div>
             <div class="data-row">
@@ -105,7 +127,11 @@
                     @Html.LabelFor(m => m.MemberModel.Country)
                 </div>
                 <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Country)
+                    @Html.DropDownListFor(m => m.MemberModel.Country,  new List<SelectListItem>{
+                                        new SelectListItem { Text="Malaysia", Value="MAL" },
+                                        //new SelectListItem { Text="Singapore", Value="SGR" },
+                                        //new SelectListItem { Text="Thailand", Value="TAI" },
+                    }, "Select Country")
                 </div>
             </div>
             <div class="data-row">
@@ -116,6 +142,7 @@
                     @Html.TextBoxFor(m => m.MemberModel.PhoneNo)
                 </div>
             </div>
+            
         </div>
         <input type="submit" value="Update" />
     </fieldset>

@@ -16,13 +16,16 @@
         @Scripts.Render("~/bundles/modernizr")
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/jqueryui")
+        @*@Scripts.Render("~/bundles/jqueryplugins")*@
         @RenderSection("scripts", required: false)
+        @*External Resources*@
+        <script src="~/Scripts/jquery.maskedinput-1.4.js"></script>
     </head>
     <body>
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                    <p class="site-title">@Html.ActionLink("GoPulau", "Index", "Home")</p>
                 </div>
                 <div class="float-right">
                     <section id="login">
@@ -33,6 +36,11 @@
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("My Profile", "Manage", "Account")</li>
+                                <li>@Html.ActionLink("My Order", "MyOrder", "Account")</li>
+                            }
                         </ul>
                     </nav>
                 </div>
