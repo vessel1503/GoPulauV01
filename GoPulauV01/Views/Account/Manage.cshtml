@@ -15,14 +15,14 @@
 {
     <div id="UpdateMemberDetails">
         <ul>
-            <li><a href="#ChangePassword">Change Password</a></li>
             <li><a href="#UpdateMember">Update Member</a></li>
+            <li><a href="#ChangePassword">Change Password</a></li>
         </ul>
-        <div id="ChangePassword">
-            @Html.Partial("_ChangePasswordPartial")
-        </div>
         <div id="UpdateMember">
             @Html.Partial("_UpdateMemberPartial")
+        </div>
+        <div id="ChangePassword">
+            @Html.Partial("_ChangePasswordPartial")
         </div>
     </div>
     
@@ -39,7 +39,7 @@ else
     @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
 </section>*@
 
-<style>
+<style type="text/css">
     .ui-tabs-vertical {
         width: 55em;
     }
@@ -74,10 +74,13 @@ else
             float: right;
             width: 40em;
         }
+
+   
 </style>
 <script type="text/javascript">
     $("#UpdateMemberDetails").tabs({
         heightStyle: "fill"
+        //event: "mouseover"
     }).addClass("ui-tabs-vertical ui-helper-clearfix");
     $("#tabs li").removeClass("ui-corner-top").addClass("ui-corner-left");
 </script>

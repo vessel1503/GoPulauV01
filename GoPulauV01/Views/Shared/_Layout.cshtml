@@ -20,6 +20,7 @@
         @RenderSection("scripts", required: false)
         @*External Resources*@
         <script src="~/Scripts/jquery.maskedinput-1.4.js"></script>
+        <script src="~/Scripts/App/ny.util.js"></script>
     </head>
     <body>
         <header>
@@ -34,6 +35,7 @@
                     <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Journey Package", "JourneyPackage", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                             @if (Request.IsAuthenticated)

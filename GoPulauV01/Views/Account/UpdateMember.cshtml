@@ -2,14 +2,15 @@
 
 <h3>Update Member Info</h3>
 
-@using (Html.BeginForm("UpdateMember", "Account")) {
+@*@using (Html.BeginForm("Update", "Account")) {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
+    @Html.ValidationSummary()*@
 
     <fieldset>
         <legend>Update Member Info Form</legend>
-        <div>
+        <div class="member-update-form">
             <div class="data-row">
+                <a href="~/Views/Account/Manage.cshtml">~/Views/Account/Manage.cshtml</a>
                 <div class="data-column-title">
                     @Html.LabelFor(m => m.MemberModel.Name)
                 </div>
@@ -116,6 +117,62 @@
                 </div>
             </div>
         </div>
-        <input type="submit" value="Update" />
+        <input id="btnUpdateMember" type="button" value="Update" />
     </fieldset>
-}
+@*}*@
+<script type="text/javascript">
+
+    $('#btnUpdateMember').click(function(){
+        alert('btnUpdateMember');
+    });
+
+</script>
+<style type="text/css">
+    input[type=radio] {
+        width: auto;
+        margin-right: 10px;
+        float: left;
+    }
+
+    input[type=radio] + label {
+        width: auto;
+        float: left;
+        margin-right: 20px;
+    }
+
+    input[type=text] {
+        margin: 0px;
+    }
+
+    input[type=password] {
+        margin: 0px;
+    }
+
+    .radio-member-gender {
+    }
+
+    .member-update-form {
+        font-size: 14px;
+        font-family: 'Segoe UI';
+    }
+
+    .data-row {
+        position: relative;
+        width: 100%;
+        height: 35px;
+    }
+
+    .data-column-title {
+        width: 30%;
+        position: relative;
+        float: left;
+        padding: 1px 0px;
+    }
+
+    .data-column-input {
+        width: 70%;
+        position: relative;
+        float: left;
+        padding: 1px 0px;
+    }
+</style>

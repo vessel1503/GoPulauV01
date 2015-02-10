@@ -6,7 +6,10 @@
             <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
         }
     </text>
-} else {
+    <div style="display:inline-block;height:35px;width:35px;background-image:url('/Images/cart.jpg');background-size:cover"></div>
+}
+else
+{
     <ul>
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>

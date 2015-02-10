@@ -28,5 +28,10 @@ namespace GoPulauV01.Controllers
 
             return View();
         }
+
+        public ActionResult JourneyPackage()
+        {
+            return View();
+        }
     }
 }

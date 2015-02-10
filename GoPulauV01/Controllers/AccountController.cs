@@ -191,6 +191,8 @@ namespace GoPulauV01.Controllers
             bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.HasLocalPassword = hasLocalAccount;
             ViewBag.ReturnUrl = Url.Action("Manage");
+
+            ViewBag.SelectedTab = "ChangePassword";
             if (hasLocalAccount)
             {
                 if (ModelState.IsValid)
@@ -248,28 +250,37 @@ namespace GoPulauV01.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UpdateMember(CustomMemberUpdateModel model)
         {
-            var localMember = model.MemberModel;
-            using( var dbMember = new MemberContext()){
-                Member member = dbMember.Member.Find(localMember.MemberId);
-                if (member != null)
+            ViewBag.SelectedTab = "UpdateMember";
+            if (ModelState.IsValid)
+            {
+                var localMember = model.MemberModel;
+                using (var dbMember = new MemberContext())
                 {
-                    member.Name = localMember.Name;
-                    member.Occupation = localMember.Occupation;
-                    member.PhoneNo = localMember.PhoneNo;
-                    member.Race = localMember.Race;
-                    member.Religion = localMember.Religion;
-                    member.Ic_Passport = localMember.Ic_Passport;
-                    member.Address = localMember.Address;
-                    member.PostalCode = localMember.PostalCode;
-                    member.State = localMember.State;
-                    member.Country = localMember.Country;
-                    member.Dob = localMember.Dob;
-                    member.Gender = localMember.Gender;
-                    dbMember.SaveChanges();
+                    Member member = dbMember.Member.Find(localMember.MemberId);
+                    if (member != null)
+                    {
+                        member.Name = localMember.Name;
+                        member.Occupation = localMember.Occupation;
+                        member.PhoneNo = localMember.PhoneNo;
+                        member.Race = localMember.Race;
+                        member.Religion = localMember.Religion;
+                        member.Ic_Passport = localMember.Ic_Passport;
+                        member.Address = localMember.Address;
+                        member.PostalCode = localMember.PostalCode;
+                        member.State = localMember.State;
+                        member.Country = localMember.Country;
+                        member.Dob = localMember.Dob;
+                        member.Gender = localMember.Gender;
+                        dbMember.SaveChanges();
+                    }
                 }
-            }
 
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
+                return RedirectToAction("Manage", "Account");
+            }
+            else
+            {
+                return RedirectToAction("Manage", "Account");
+            }
         }
         //
         // POST: /Account/ExternalLogin
@@ -279,8 +290,7 @@ namespace GoPulauV01.Controllers
         {
             return View();
         }
-
-
+        
 
         [HttpPost]
         [AllowAnonymous]

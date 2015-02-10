@@ -40,10 +40,11 @@
 }
 </section>
 
-@*<section class="social" id="socialLoginForm">
-    <h2>Use another service to log in.</h2>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>*@
+<section class="social" id="socialLoginForm">
+    @*<h2>Use another service to log in.</h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })*@
+    <div style="height:100%;width:100%;background-size:contain;background-image:url('/Images/login-image.jpg')"></div>
+</section>
 
 @*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
