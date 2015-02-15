@@ -11,6 +11,10 @@ using WebMatrix.WebData;
 using GoPulauV01.Filters;
 using GoPulauV01.Models;
 using System.Net;
+using Newtonsoft.Json;
+using System.Data;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace GoPulauV01.Controllers
 {
@@ -122,7 +126,7 @@ namespace GoPulauV01.Controllers
             if (ownerAccount == User.Identity.Name)
             {
                 // Use a transaction to prevent the user from deleting their last login credential
-                using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Serializable }))
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = System.Transactions.IsolationLevel.Serializable }))
                 {
                     bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
                     if (hasLocalAccount || OAuthWebSecurity.GetAccountsFromUserName(User.Identity.Name).Count > 1)
@@ -157,37 +161,84 @@ namespace GoPulauV01.Controllers
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(currentUserId);
             ViewBag.ReturnUrl = Url.Action("Manage");
-
-            List<SelectListItem> items = new List<SelectListItem>();
-            items.Add(new SelectListItem
-            {
-                Text = "Wilayah Kuala Lumpur",
-                Value = "KUL"
-            });
-            items.Add(new SelectListItem
-            {
-                Text = "Selangor",
-                Value = "SEL"
-            });
-            items.Add(new SelectListItem
-            {
-                Text = "Pahang",
-                Value = "PHG"
-            });
-
-            ViewData["States"] = items;
-
+            
             return View(member);
         }
 
         //
         // POST: /Account/Manage
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Manage(CustomMemberUpdateModel customModel)
+        //{
+        //    LocalPasswordModel model = customModel.localPasswordModel;
+        //    bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
+        //    ViewBag.HasLocalPassword = hasLocalAccount;
+        //    ViewBag.ReturnUrl = Url.Action("Manage");
+
+        //    ViewBag.SelectedTab = "ChangePassword";
+        //    if (hasLocalAccount)
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            // ChangePassword will throw an exception rather than return false in certain failure scenarios.
+        //            bool changePasswordSucceeded;
+        //            try
+        //            {
+        //                changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
+        //            }
+        //            catch (Exception)
+        //            {
+        //                changePasswordSucceeded = false;
+        //            }
+
+        //            if (changePasswordSucceeded)
+        //            {
+        //                return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+        //            }
+        //            else
+        //            {
+        //                ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // User does not have a local password so remove any validation errors caused by a missing
+        //        // OldPassword field
+        //        ModelState state = ModelState["OldPassword"];
+        //        if (state != null)
+        //        {
+        //            state.Errors.Clear();
+        //        }
+
+        //        if (ModelState.IsValid)
+        //        {
+        //            try
+        //            {
+        //                WebSecurity.CreateAccount(User.Identity.Name, model.NewPassword);
+        //                return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+        //            }
+        //            catch (Exception)
+        //            {
+        //                ModelState.AddModelError("", String.Format("Unable to create local account. An account with the name \"{0}\" may already exist.", User.Identity.Name));
+        //            }
+        //        }
+        //    }
+
+        //    // If we got this far, something failed, redisplay form
+        //    return View(customModel);
+        //}
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Manage(CustomMemberUpdateModel customModel)
+        //[ValidateAntiForgeryToken]
+        public ActionResult UpdateMemberPassword(string model)
         {
-            LocalPasswordModel model = customModel.localPasswordModel;
+            if (String.IsNullOrEmpty(model))
+                throw new HttpException(404, "Update Member Failed");
+
+            var localPasswordModel = JsonConvert.DeserializeObject<LocalPasswordModel>(model);
             bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.HasLocalPassword = hasLocalAccount;
             ViewBag.ReturnUrl = Url.Action("Manage");
@@ -195,103 +246,132 @@ namespace GoPulauV01.Controllers
             ViewBag.SelectedTab = "ChangePassword";
             if (hasLocalAccount)
             {
-                if (ModelState.IsValid)
+                // ChangePassword will throw an exception rather than return false in certain failure scenarios.
+                bool changePasswordSucceeded;
+                try
                 {
-                    // ChangePassword will throw an exception rather than return false in certain failure scenarios.
-                    bool changePasswordSucceeded;
-                    try
-                    {
-                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
-                    }
-                    catch (Exception)
-                    {
-                        changePasswordSucceeded = false;
-                    }
-
-                    if (changePasswordSucceeded)
-                    {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                    }
+                    changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, localPasswordModel.OldPassword, localPasswordModel.NewPassword);
                 }
+                catch (Exception)
+                {
+                    changePasswordSucceeded = false;
+                }
+
+                if (changePasswordSucceeded)
+                {
+                    return Json(new { success = false, responseText = "Change Password Succeed." }, JsonRequestBehavior.AllowGet);
+                    //return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                }
+                else
+                {
+                    return Json(new { success = false, responseText = "Please make sure you enter the correct password." }, JsonRequestBehavior.AllowGet);
+                    //ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                }
+                
             }
-            else
-            {
-                // User does not have a local password so remove any validation errors caused by a missing
-                // OldPassword field
-                ModelState state = ModelState["OldPassword"];
-                if (state != null)
-                {
-                    state.Errors.Clear();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        WebSecurity.CreateAccount(User.Identity.Name, model.NewPassword);
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
-                    }
-                    catch (Exception)
-                    {
-                        ModelState.AddModelError("", String.Format("Unable to create local account. An account with the name \"{0}\" may already exist.", User.Identity.Name));
-                    }
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(customModel);
+            return Json(new { success = false, responseText = "Change Password Failed." }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult UpdateMember(CustomMemberUpdateModel model)
+        public ActionResult UpdateMember(string model)
         {
-            ViewBag.SelectedTab = "UpdateMember";
-            if (ModelState.IsValid)
+            if (String.IsNullOrEmpty(model))
+                throw new HttpException(404, "Update Member Failed");
+
+            var localMember = JsonConvert.DeserializeObject<Member>(model);
+            //ViewBag.SelectedTab = "UpdateMember";
+            //var localMember = model.MemberModel;
+            using (var dbMember = new MemberContext())
             {
-                var localMember = model.MemberModel;
-                using (var dbMember = new MemberContext())
+                Member member = dbMember.Member.Find(localMember.MemberId);
+                if (member != null)
                 {
-                    Member member = dbMember.Member.Find(localMember.MemberId);
-                    if (member != null)
+                    member.Name = localMember.Name;
+                    member.Occupation = localMember.Occupation;
+                    member.PhoneNo = localMember.PhoneNo;
+                    member.Race = localMember.Race;
+                    member.Religion = localMember.Religion;
+                    member.Ic_Passport = localMember.Ic_Passport;
+                    member.Address = localMember.Address;
+                    member.PostalCode = localMember.PostalCode;
+                    member.State = localMember.State;
+                    member.Country = localMember.Country;
+                    member.Dob = localMember.Dob;
+                    member.Gender = localMember.Gender;
+                    try
                     {
-                        member.Name = localMember.Name;
-                        member.Occupation = localMember.Occupation;
-                        member.PhoneNo = localMember.PhoneNo;
-                        member.Race = localMember.Race;
-                        member.Religion = localMember.Religion;
-                        member.Ic_Passport = localMember.Ic_Passport;
-                        member.Address = localMember.Address;
-                        member.PostalCode = localMember.PostalCode;
-                        member.State = localMember.State;
-                        member.Country = localMember.Country;
-                        member.Dob = localMember.Dob;
-                        member.Gender = localMember.Gender;
                         dbMember.SaveChanges();
+                        //return new JsonResult() { Data = new { success = true, responseText = "Update Member Success." }};
+                        return Json(new { success = true, responseText = "Update Member Success." }, JsonRequestBehavior.AllowGet);
+                    }
+                    catch (DbEntityValidationException dbEx)
+                    {
+                        return Json(new { success = false, responseText = "Update Member Failed." }, JsonRequestBehavior.AllowGet);
+                        //foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        //{
+                        //    foreach (var validationError in validationErrors.ValidationErrors)
+                        //    {
+                        //        Trace.TraceInformation("Class: {0}, Property: {1}, Error: {2}",
+                        //            validationErrors.Entry.Entity.GetType().FullName,
+                        //            validationError.PropertyName,
+                        //            validationError.ErrorMessage);
+                        //    }
+                        //}
                     }
                 }
+                else
+                {
+                    return Json(new { success = false, responseText = "Update Member Failed." }, JsonRequestBehavior.AllowGet);
+                }
+            }
 
-                return RedirectToAction("Manage", "Account");
-            }
-            else
-            {
-                return RedirectToAction("Manage", "Account");
-            }
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult UpdateMember(CustomMemberUpdateModel model)
+        //{
+        //    ViewBag.SelectedTab = "UpdateMember";
+        //    if (ModelState.IsValid)
+        //    {
+        //        var localMember = model.MemberModel;
+        //        using (var dbMember = new MemberContext())
+        //        {
+        //            Member member = dbMember.Member.Find(localMember.MemberId);
+        //            if (member != null)
+        //            {
+        //                member.Name = localMember.Name;
+        //                member.Occupation = localMember.Occupation;
+        //                member.PhoneNo = localMember.PhoneNo;
+        //                member.Race = localMember.Race;
+        //                member.Religion = localMember.Religion;
+        //                member.Ic_Passport = localMember.Ic_Passport;
+        //                member.Address = localMember.Address;
+        //                member.PostalCode = localMember.PostalCode;
+        //                member.State = localMember.State;
+        //                member.Country = localMember.Country;
+        //                member.Dob = localMember.Dob;
+        //                member.Gender = localMember.Gender;
+        //                dbMember.SaveChanges();
+        //            }
+        //        }
+
+        //        return RedirectToAction("Manage", "Account");
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Manage", "Account");
+        //    }
+        //}
         //
         // POST: /Account/ExternalLogin
-
 
         public ActionResult MyOrder()
         {
             return View();
         }
-        
 
+        #region Unused
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -379,7 +459,6 @@ namespace GoPulauV01.Controllers
             return View(model);
         }
 
-        //
         // GET: /Account/ExternalLoginFailure
 
         [AllowAnonymous]
@@ -416,6 +495,8 @@ namespace GoPulauV01.Controllers
             ViewBag.ShowRemoveButton = externalLogins.Count > 1 || OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
         }
+
+        #endregion
 
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)

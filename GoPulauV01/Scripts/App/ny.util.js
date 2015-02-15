@@ -2,23 +2,29 @@
 var ny = window.ny || {};
 
 //#region Constant
-var serverUrl = 'http://localhost:3418/';
+var serverUrl = 'http://localhost:3418';
 //#endregion
 
 ny.ajaxPost = function (url, jsonData) {//, success, error
 
     $.ajax({
         type: 'POST',
-        dataType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        //dataType: 'application/json;charset=utf-8',
+        //contentType: "application/json;charset=utf-8",
         url: serverUrl + url,
-        data: JSON.stringify(jsonData),        
-        success: function (data) {
-            alert(data);
+        data: jsonData,//JSON.stringify(jsonData),        
+        success: function (response) {
+            if (response) {
+                alert(response.responseText);
+            }
+            else {
+                alert('Unknown Error');
+            }
         },
-        error: function (errMsg) {
-            alert(errMsg);
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert('Unknown Error');
         }
-
     });
 
 };

@@ -16,7 +16,7 @@
                     @Html.LabelFor(m => m.MemberModel.Name)
                 </div>
                 <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Name)
+                    @Html.TextBoxFor(m => m.MemberModel.Name, new { id = "txtMemberName"})
                 </div>
             </div>
             <div class="data-row">
@@ -24,7 +24,7 @@
                     @Html.LabelFor(m => m.MemberModel.Ic_Passport)
                 </div>
                 <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Ic_Passport)
+                    @Html.TextBoxFor(m => m.MemberModel.Ic_Passport, new { id = "txtMemberIcPassport" })
                 </div>
             </div>
             <div class="data-row">
@@ -32,9 +32,9 @@
                     @Html.LabelFor(m => m.MemberModel.Gender)
                 </div>
                 <div class="data-column-input">
-                    @Html.RadioButtonFor(m => m.MemberModel.Gender, "M", new { id = "radMemberGenderMale", @class = "radio-member-gender", name = "gender", Checked = "checked" })
+                    @Html.RadioButtonFor(m => m.MemberModel.Gender, "M", new { id = "radMemberGenderMale", @class = "radio-member-gender", Checked = "checked" })
                     @Html.Label("radMemberGenderMale", "Male")
-                    @Html.RadioButtonFor(m => m.MemberModel.Gender, "F", new { id = "radMemberGenderFemale", @class = "radio-member-gender", name = "gender" })
+                    @Html.RadioButtonFor(m => m.MemberModel.Gender, "F", new { id = "radMemberGenderFemale", @class = "radio-member-gender" })
                     @Html.Label("radMemberGenderFemale", "Female")
                 </div>
             </div>
@@ -43,7 +43,7 @@
                     @Html.LabelFor(m => m.MemberModel.Dob)
                 </div>
                 <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Dob)
+                    @Html.TextBoxFor(m => m.MemberModel.Dob, new { id = "txtMemberDob" })
                 </div>
             </div>
             <div class="data-row">
@@ -51,13 +51,13 @@
                     @Html.LabelFor(m => m.MemberModel.Race)
                 </div>
                 <div class="data-column-input">
-                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Malay", new { id = "radMemberRaceMalay", name = "race", Checked = "checked" })
+                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Malay", new { id = "radMemberRaceMalay", Checked = "checked" })
                     @Html.Label("radMemberRaceMalay", "Malay")
-                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Chinese", new { id = "radMemberRaceChinese", name = "race" })
+                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Chinese", new { id = "radMemberRaceChinese" })
                     @Html.Label("radMemberRaceChinese", "Chinese")
-                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Indian", new { id = "radMemberRaceIndian", name = "race" })
+                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Indian", new { id = "radMemberRaceIndian" })
                     @Html.Label("radMemberRaceIndian", "Indian")
-                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Others", new { id = "radMemberRaceOthers", name = "race" })
+                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Others", new { id = "radMemberRaceOthers" })
                     @Html.Label("radMemberRaceOthers", "Others")
                 </div>
             </div>
@@ -71,7 +71,7 @@
                                         new SelectListItem { Text="Buddhism", Value="BUD" },
                                         new SelectListItem { Text="Hinduism", Value="HIN" },
                                         new SelectListItem { Text="Others", Value="OTH" },
-                    }, "Select Religion")
+                    }, "Select Religion", new { id = "ddlMemberReligion"})
                 </div>
             </div>
             <div class="data-row">
@@ -79,7 +79,7 @@
                     @Html.LabelFor(m => m.MemberModel.Occupation)
                 </div>
                 <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Occupation)
+                    @Html.TextBoxFor(m => m.MemberModel.Occupation, new { id = "txtMemberOccupation" })
                 </div>
             </div>
             <div class="data-row">
@@ -87,7 +87,7 @@
                     @Html.LabelFor(m => m.MemberModel.Address)
                 </div>
                 <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Address)
+                    @Html.TextBoxFor(m => m.MemberModel.Address, new { id = "txtMemberAddress" })
                 </div>
             </div>
             <div class="data-row">
@@ -95,7 +95,7 @@
                     @Html.LabelFor(m => m.MemberModel.PostalCode)
                 </div>
                 <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.PostalCode)
+                    @Html.TextBoxFor(m => m.MemberModel.PostalCode, new { id = "txtMemberPostalCode" })
                 </div>
             </div>
             <div class="data-row">
@@ -119,7 +119,7 @@
                                         new SelectListItem { Text="Selangor", Value="SLG" },
                                         new SelectListItem { Text="Seremban", Value="SRB" },
                                         new SelectListItem { Text="Terengganu", Value="TRG" }
-                    }, "Select State")
+                    }, "Select State", new { id = "ddlMemberState" })
                 </div>
             </div>
             <div class="data-row">
@@ -131,7 +131,7 @@
                                         new SelectListItem { Text="Malaysia", Value="MAL" },
                                         //new SelectListItem { Text="Singapore", Value="SGR" },
                                         //new SelectListItem { Text="Thailand", Value="TAI" },
-                    }, "Select Country")
+                    }, "Select Country", new { id = "ddlMemberCountry" })
                 </div>
             </div>
             <div class="data-row">
@@ -139,7 +139,7 @@
                     @Html.LabelFor(m => m.MemberModel.PhoneNo)
                 </div>
                 <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.PhoneNo)
+                    @Html.TextBoxFor(m => m.MemberModel.PhoneNo, new { id = "txtMemberPhoneNo" })
                 </div>
             </div>
             
@@ -151,7 +151,38 @@
 <script type="text/javascript">
 
     $('#btnUpdateMember').click(function () {
-        alert('btnUpdateMember');
+
+        var memberName = $('#txtMemberName').val();
+        var memberIcPassport = $('#txtMemberIcPassport').val();
+        var memberDob = $('#txtMemberDob').val();
+        var memberOccupation = $('#txtMemberOccupation').val();
+        var memberAddress = $('#txtMemberAddress').val();
+        var memberPostalCode = $('#txtMemberPostalCode').val();
+        var memberPhoneNo = $('#txtMemberPhoneNo').val();
+        var memberGender = $('input[name="MemberModel.Gender"]:checked').val()
+        var memberRace = $('input[name="MemberModel.Race"]:checked').val()
+        var memberReligion = $('#ddlMemberReligion').val();
+        var memberState = $('#ddlMemberState').val();
+        var memberCountry = $('#ddlMemberCountry').val();
+
+        var editedMember = {};
+        editedMember.MemberId = @Model.MemberModel.MemberId;
+        editedMember.Name = memberName;
+        editedMember.Ic_Passport = memberIcPassport;
+        editedMember.Dob = memberDob;
+        editedMember.Occupation = memberOccupation;
+        editedMember.Address = memberAddress;
+        editedMember.PostalCode = memberPostalCode;
+        editedMember.PhoneNo = memberPhoneNo;
+        editedMember.Gender = memberGender;
+        editedMember.Race = memberRace;
+        editedMember.Religion = memberReligion;
+        editedMember.State = memberState;
+        editedMember.Country = memberCountry;
+        
+        var stringMember = JSON.stringify(editedMember);
+        var updateMemberInput = { model : stringMember };
+        ny.ajaxPost('/Account/UpdateMember', updateMemberInput);
     });
 
 </script>
