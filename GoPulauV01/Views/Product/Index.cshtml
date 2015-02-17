@@ -18,6 +18,7 @@
             </div>
             <div class="journey-package-column-right">
                 View Details
+				<input id="btnPackageA" type="button" value="Order" onclick="@("window.location.href='" + @Url.Action("ProcessOrder", "Order", new { id = "1" }) + "'");" />
             </div>
         </div>
         <div class="journey-package-row">
@@ -32,6 +33,7 @@
             </div>
             <div class="journey-package-column-right">
                 View Details
+				<input id="btnPackageB" type="button" value="Order" onclick="@("window.location.href='" + @Url.Action("ProcessOrder", "Order", new { id = "2" }) + "'");" />
             </div>
         </div>
         <div class="journey-package-row">
@@ -46,46 +48,53 @@
             </div>
             <div class="journey-package-column-right">
                 View Details
+				<input id="btnPackageC" type="button" value="Order" onclick="@("window.location.href='" + @Url.Action("ProcessOrder", "Order", new { id = "3" }) + "'");" />
             </div>
         </div>
     </div>
 </div>
 
 <style type="text/css">
-    .journey-package-wrapper{
-        width:100%;
-        height:100%;
+    .journey-package-wrapper {
+        width: 100%;
+        height: 100%;
     }
-    .journey-package-container{
-        width:100%;
-        height:100%;
+
+    .journey-package-container {
+        width: 100%;
+        height: 100%;
     }
-    .journey-package-row{
-        width:100%;
-        height:30px;
+
+    .journey-package-row {
+        width: 100%;
+        height: 30px;
     }
-    .journey-package-column-left{
-        width:20%;
-        height:100%;
-        display:inline-block;
-        float:left;
+
+    .journey-package-column-left {
+        width: 15%;
+        height: 100%;
+        display: inline-block;
+        float: left;
     }
-    .journey-package-column-left-middle{
-        width:20%;
-        height:100%;
-        display:inline-block;
-        float:left;
+
+    .journey-package-column-left-middle {
+        width: 20%;
+        height: 100%;
+        display: inline-block;
+        float: left;
     }
-    .journey-package-column-middle-right{
-        width:40%;
-        height:100%;
-        display:inline-block;
-        float:left;
+
+    .journey-package-column-middle-right {
+        width: 35%;
+        height: 100%;
+        display: inline-block;
+        float: left;
     }
-    .journey-package-column-right{
-        width:20%;
-        height:100%;
-        display:inline-block;
-        float:left;
+
+    .journey-package-column-right {
+        width: 30%;
+        height: 100%;
+        display: inline-block;
+        float: left;
     }
 </style>

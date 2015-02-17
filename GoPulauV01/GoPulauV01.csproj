@@ -184,6 +184,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -191,6 +193,9 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Interface\IUpdateCreate.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\Merchant.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -330,7 +335,9 @@
     <Content Include="Views\Shared\_Scripts.cshtml" />
     <Content Include="Views\Account\MyOrder.cshtml" />
     <Content Include="Views\Account\JourneyPackage.cshtml" />
-    <Content Include="Views\Home\JourneyPackage.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\ProcessOrder.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

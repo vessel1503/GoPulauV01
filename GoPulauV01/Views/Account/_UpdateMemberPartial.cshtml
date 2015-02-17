@@ -105,20 +105,20 @@
                 <div class="data-column-input">
                     @*@Html.TextBoxFor(m => m.MemberModel.State)*@
                     @Html.DropDownListFor(m => m.MemberModel.State, new List<SelectListItem>{
-                                        new SelectListItem { Text="Johor", Value="JHR" },
-                                        new SelectListItem { Text="Kedah", Value="KDH" },
-                                        new SelectListItem { Text="Kelantan", Value="KLT" },
-                                        new SelectListItem { Text="Kuala Lumpur", Value="KUL"},
-                                        new SelectListItem { Text="Melaka", Value="MLK" },
-                                        new SelectListItem { Text="Pahang", Value="PHG" },
-                                        new SelectListItem { Text="Penang", Value="PNG" },
-                                        new SelectListItem { Text="Perak", Value="PRK" },
-                                        new SelectListItem { Text="Perlis", Value="PLS" },
-                                        new SelectListItem { Text="Sabah", Value="SBH" },
-                                        new SelectListItem { Text="Sarawak", Value="SRW" },
-                                        new SelectListItem { Text="Selangor", Value="SLG" },
-                                        new SelectListItem { Text="Seremban", Value="SRB" },
-                                        new SelectListItem { Text="Terengganu", Value="TRG" }
+                                        new SelectListItem { Text="Johor", Value="Johor" },
+                                        new SelectListItem { Text="Kedah", Value="Kedah" },
+                                        new SelectListItem { Text="Kelantan", Value="Kelantan" },
+                                        new SelectListItem { Text="Kuala Lumpur", Value="Kuala Lumpur"},
+                                        new SelectListItem { Text="Melaka", Value="Melaka" },
+                                        new SelectListItem { Text="Pahang", Value="Pahang" },
+                                        new SelectListItem { Text="Penang", Value="Penang" },
+                                        new SelectListItem { Text="Perak", Value="Perak" },
+                                        new SelectListItem { Text="Perlis", Value="Perlis" },
+                                        new SelectListItem { Text="Sabah", Value="Sabah" },
+                                        new SelectListItem { Text="Sarawak", Value="Sarawak" },
+                                        new SelectListItem { Text="Selangor", Value="Selangor" },
+                                        new SelectListItem { Text="Seremban", Value="Seremban" },
+                                        new SelectListItem { Text="Terengganu", Value="Terengganu" }
                     }, "Select State", new { id = "ddlMemberState" })
                 </div>
             </div>
@@ -128,9 +128,9 @@
                 </div>
                 <div class="data-column-input">
                     @Html.DropDownListFor(m => m.MemberModel.Country,  new List<SelectListItem>{
-                                        new SelectListItem { Text="Malaysia", Value="MAL" },
-                                        //new SelectListItem { Text="Singapore", Value="SGR" },
-                                        //new SelectListItem { Text="Thailand", Value="TAI" },
+                                        new SelectListItem { Text="Malaysia", Value="Malaysia" },
+                                        //new SelectListItem { Text="Singapore", Value="Singapore" },
+                                        //new SelectListItem { Text="Thailand", Value="Thailand" },
                     }, "Select Country", new { id = "ddlMemberCountry" })
                 </div>
             </div>
