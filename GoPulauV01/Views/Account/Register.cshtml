@@ -1,246 +1,254 @@
 ﻿@model GoPulauV01.Models.CustomRegisterModel
 
 @{
-    ViewBag.Title = "Register";
+	ViewBag.Title = "Register";
 }
 
 <hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>Create a new account.</h2>
+	<h1>@ViewBag.Title.</h1>
+	<h2>Create a new account.</h2>
 </hgroup>
 
 @using (Html.BeginForm()) {
-    <fieldset>
-        <legend>Registration Form</legend>
-        <div class="register-form">
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Name)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Name, new { @placeholder = "@Example: Steve Job" })
-                    @Html.ValidationMessageFor(m => m.MemberModel.Name)
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Ic_Passport)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Ic_Passport, new { @id = "txtIcPassport", @placeholder = "@Example: 990123-10-1234" })
-                    @Html.ValidationMessageFor(m => m.MemberModel.Ic_Passport)
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Gender)
-                </div>
-                <div class="data-column-input">
-                    @Html.RadioButtonFor(m => m.MemberModel.Gender, "M", new { id = "radMemberGenderMale", @class = "radio-member-gender", name = "gender", Checked = "checked" })
-                    @Html.Label("radMemberGenderMale", "Male")
-                    @Html.RadioButtonFor(m => m.MemberModel.Gender, "F", new { id = "radMemberGenderFemale", @class = "radio-member-gender", name="gender" })
-                    @Html.Label("radMemberGenderFemale", "Female")
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Dob)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Dob, new { @id = "txtDOB", @placeholder = "@Example: DD/MM/YYYY" })
-                    @Html.ValidationMessageFor(m => m.MemberModel.Dob)
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Race)
-                </div>
-                <div class="data-column-input">
-                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Malay", new { id = "radMemberRaceMalay", name = "race", Checked = "checked" })
-                    @Html.Label("radMemberRaceMalay", "Malay")
-                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Chinese", new { id = "radMemberRaceChinese", name="race" })
-                    @Html.Label("radMemberRaceChinese", "Chinese")
-                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Indian", new { id = "radMemberRaceIndian", name = "race" })
-                    @Html.Label("radMemberRaceIndian", "Indian")
-                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Others", new { id = "radMemberRaceOthers", name = "race" })
-                    @Html.Label("radMemberRaceOthers", "Others")
-                    @Html.ValidationMessageFor(m => m.MemberModel.Race)
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Religion)
-                </div>
-                <div class="data-column-input">
-                    @Html.DropDownListFor(m => m.MemberModel.Religion, new List<SelectListItem>{
-                                        new SelectListItem { Text="Islam", Value="ISL" },
-                                        new SelectListItem { Text="Buddhism", Value="BUD" },
-                                        new SelectListItem { Text="Hinduism", Value="HIN" },
-                                        new SelectListItem { Text="Others", Value="OTH" },
-                    }, "Select Religion")
-                    @Html.ValidationMessageFor(m => m.MemberModel.Religion)
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Occupation)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Occupation, new { @placeholder = "@Example: Student" })
-                    @Html.ValidationMessageFor(m => m.MemberModel.Occupation)
-                </div>               
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Address)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Address, new { @placeholder = "@Example: A-03-04 Jalan Satu, Taman Baru." })
-                    @Html.ValidationMessageFor(m => m.MemberModel.Address)
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.PostalCode)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.PostalCode, new { @placeholder = "@Example: 99999" })
-                    @Html.ValidationMessageFor(m => m.MemberModel.PostalCode)
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.State)
-                </div>
-                <div class="data-column-input">
-                    @Html.DropDownListFor(m => m.MemberModel.State, new List<SelectListItem>{
-                                        new SelectListItem { Text="Johor", Value="Johor" },
-                                        new SelectListItem { Text="Kedah", Value="Kedah" },
-                                        new SelectListItem { Text="Kelantan", Value="Kelantan" },
-                                        new SelectListItem { Text="Kuala Lumpur", Value="Kuala Lumpur"},
-                                        new SelectListItem { Text="Melaka", Value="Melaka" },
-                                        new SelectListItem { Text="Pahang", Value="Pahang" },
-                                        new SelectListItem { Text="Penang", Value="Penang" },
-                                        new SelectListItem { Text="Perak", Value="Perak" },
-                                        new SelectListItem { Text="Perlis", Value="Perlis" },
-                                        new SelectListItem { Text="Sabah", Value="Sabah" },
-                                        new SelectListItem { Text="Sarawak", Value="Sarawak" },
-                                        new SelectListItem { Text="Selangor", Value="Selangor" },
-                                        new SelectListItem { Text="Seremban", Value="Seremban" },
-                                        new SelectListItem { Text="Terengganu", Value="Terengganu" }
-                    }, "Select State")
-                    @Html.ValidationMessageFor(m => m.MemberModel.State)
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Country)
-                </div>
-                <div class="data-column-input">
-                    @Html.DropDownListFor(m => m.MemberModel.Country, new List<SelectListItem>{
-                                        new SelectListItem { Text="Malaysia", Value="Malaysia" },
-                                        //new SelectListItem { Text="Singapore", Value="Singapore" },
-                                        //new SelectListItem { Text="Thailand", Value="Thailand" },
-                    }, "Select Country")
-                    @Html.ValidationMessageFor(m => m.MemberModel.Country)
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.PhoneNo)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.PhoneNo, new { @id = "txtPhoneNo", @placeholder = "@Example: 012-1234567" })
-                    @Html.ValidationMessageFor(m => m.MemberModel.PhoneNo)
-                </div>                
-            </div>
-            <br />
-            <hr />
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.LoginModel.UserName)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.LoginModel.UserName, new { @placeholder = "@Example: abc123@hotmail.com" })
-                    @Html.ValidationMessageFor(m => m.LoginModel.UserName)
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.LoginModel.Password)
-                </div>
-                <div class="data-column-input">
-                    @Html.PasswordFor(m => m.LoginModel.Password, new { @placeholder = "@Example: Password" })
-                    @Html.ValidationMessageFor(m => m.LoginModel.Password)
-                </div>                
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.LoginModel.ConfirmPassword)
-                </div>
-                <div class="data-column-input">
-                    @Html.PasswordFor(m => m.LoginModel.ConfirmPassword,  new { @placeholder = "@Example: Password" })
-                    @Html.ValidationMessageFor(m => m.LoginModel.ConfirmPassword)
-                </div>                
-            </div>
-        </div>
-        <input type="submit" value="Register" />
-    </fieldset>
-    @Html.AntiForgeryToken()
-    @*@Html.ValidationSummary()*@
+	<fieldset>
+		<legend>Registration Form</legend>
+		<div class="register-form">
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Name)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.Name, new { @placeholder = "@Example: Steve Job" })
+					@Html.ValidationMessageFor(m => m.MemberModel.Name)
+				</div>                
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Ic_Passport)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.Ic_Passport, new { @id = "txtIcPassport", @placeholder = "@Example: 990123-10-1234" })
+					@Html.ValidationMessageFor(m => m.MemberModel.Ic_Passport)
+				</div>                
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Gender)
+				</div>
+				<div class="data-column-input">
+					@Html.RadioButtonFor(m => m.MemberModel.Gender, "M", new { id = "radMemberGenderMale", @class = "radio-member-gender", name = "gender", Checked = "checked" })
+					@Html.Label("radMemberGenderMale", "Male")
+					@Html.RadioButtonFor(m => m.MemberModel.Gender, "F", new { id = "radMemberGenderFemale", @class = "radio-member-gender", name="gender" })
+					@Html.Label("radMemberGenderFemale", "Female")
+				</div>                
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Dob)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.Dob, new { @id = "txtDOB", @placeholder = "@Example: DD/MM/YYYY" })
+					@Html.ValidationMessageFor(m => m.MemberModel.Dob)
+				</div>                
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Race)
+				</div>
+				<div class="data-column-input">
+					@Html.RadioButtonFor(m => m.MemberModel.Race, "Malay", new { id = "radMemberRaceMalay", name = "race", Checked = "checked" })
+					@Html.Label("radMemberRaceMalay", "Malay")
+					@Html.RadioButtonFor(m => m.MemberModel.Race, "Chinese", new { id = "radMemberRaceChinese", name="race" })
+					@Html.Label("radMemberRaceChinese", "Chinese")
+					@Html.RadioButtonFor(m => m.MemberModel.Race, "Indian", new { id = "radMemberRaceIndian", name = "race" })
+					@Html.Label("radMemberRaceIndian", "Indian")
+					@Html.RadioButtonFor(m => m.MemberModel.Race, "Others", new { id = "radMemberRaceOthers", name = "race" })
+					@Html.Label("radMemberRaceOthers", "Others")
+					@Html.ValidationMessageFor(m => m.MemberModel.Race)
+				</div>                
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Religion)
+				</div>
+				<div class="data-column-input">
+					@Html.DropDownListFor(m => m.MemberModel.Religion, new List<SelectListItem>{
+										new SelectListItem { Text="Islam", Value="ISL" },
+										new SelectListItem { Text="Buddhism", Value="BUD" },
+										new SelectListItem { Text="Hinduism", Value="HIN" },
+										new SelectListItem { Text="Others", Value="OTH" },
+					}, "Select Religion")
+					@Html.ValidationMessageFor(m => m.MemberModel.Religion)
+				</div>                
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Occupation)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.Occupation, new { @placeholder = "@Example: Student" })
+					@Html.ValidationMessageFor(m => m.MemberModel.Occupation)
+				</div>               
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Address)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.Address, new { @placeholder = "@Example: A-03-04 Jalan Satu, Taman Baru." })
+					@Html.ValidationMessageFor(m => m.MemberModel.Address)
+				</div>                
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.PostalCode)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.PostalCode, new { @placeholder = "@Example: 99999" })
+					@Html.ValidationMessageFor(m => m.MemberModel.PostalCode)
+				</div>                
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.State)
+				</div>
+				<div class="data-column-input">
+					@Html.DropDownListFor(m => m.MemberModel.State, new List<SelectListItem>{
+										new SelectListItem { Text="Johor", Value="Johor" },
+										new SelectListItem { Text="Kedah", Value="Kedah" },
+										new SelectListItem { Text="Kelantan", Value="Kelantan" },
+										new SelectListItem { Text="Kuala Lumpur", Value="Kuala Lumpur"},
+										new SelectListItem { Text="Melaka", Value="Melaka" },
+										new SelectListItem { Text="Pahang", Value="Pahang" },
+										new SelectListItem { Text="Penang", Value="Penang" },
+										new SelectListItem { Text="Perak", Value="Perak" },
+										new SelectListItem { Text="Perlis", Value="Perlis" },
+										new SelectListItem { Text="Sabah", Value="Sabah" },
+										new SelectListItem { Text="Sarawak", Value="Sarawak" },
+										new SelectListItem { Text="Selangor", Value="Selangor" },
+										new SelectListItem { Text="Seremban", Value="Seremban" },
+										new SelectListItem { Text="Terengganu", Value="Terengganu" }
+					}, "Select State")
+					@Html.ValidationMessageFor(m => m.MemberModel.State)
+				</div>                
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Country)
+				</div>
+				<div class="data-column-input">
+					@Html.DropDownListFor(m => m.MemberModel.Country, new List<SelectListItem>{
+										new SelectListItem { Text="Malaysia", Value="Malaysia" },
+										//new SelectListItem { Text="Singapore", Value="Singapore" },
+										//new SelectListItem { Text="Thailand", Value="Thailand" },
+					}, "Select Country")
+					@Html.ValidationMessageFor(m => m.MemberModel.Country)
+				</div>                
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.PhoneNo)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.PhoneNo, new { @id = "txtPhoneNo", @placeholder = "@Example: 012-1234567" })
+					@Html.ValidationMessageFor(m => m.MemberModel.PhoneNo)
+				</div>                
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.IsSubscribeLatestNews)
+				</div>
+				<div class="data-column-input">
+					@Html.CheckBoxFor(m => m.MemberModel.IsSubscribeLatestNewsValue, new { id = "chkIsSubscribeLatestNews" })
+				</div>
+			</div>
+			<br />
+			<hr />
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.LoginModel.UserName)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.LoginModel.UserName, new { @placeholder = "@Example: abc123@hotmail.com" })
+					@Html.ValidationMessageFor(m => m.LoginModel.UserName)
+				</div>                
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.LoginModel.Password)
+				</div>
+				<div class="data-column-input">
+					@Html.PasswordFor(m => m.LoginModel.Password, new { @placeholder = "@Example: Password" })
+					@Html.ValidationMessageFor(m => m.LoginModel.Password)
+				</div>                
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.LoginModel.ConfirmPassword)
+				</div>
+				<div class="data-column-input">
+					@Html.PasswordFor(m => m.LoginModel.ConfirmPassword,  new { @placeholder = "@Example: Password" })
+					@Html.ValidationMessageFor(m => m.LoginModel.ConfirmPassword)
+				</div>                
+			</div>
+		</div>
+		<input type="submit" value="Register" />
+	</fieldset>
+	@Html.AntiForgeryToken()
+	@*@Html.ValidationSummary()*@
 }
 
 @*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jqueryval")
 }*@
 
 <style type="text/css">
-    input[type=radio] {
-        width: auto;
-        margin-right: 10px;
-        float: left;
-    }
-    input[type=radio] + label {
-        width:auto;
-        float: left;
-        margin-right:20px;
-    }
-    input[type=text]{
-        margin:0px;
-    }
-    input[type=password]{
-        margin:0px;
-    }
+	input[type=radio] {
+		width: auto;
+		margin-right: 10px;
+		float: left;
+	}
+	input[type=radio] + label {
+		width:auto;
+		float: left;
+		margin-right:20px;
+	}
+	input[type=text]{
+		margin:0px;
+	}
+	input[type=password]{
+		margin:0px;
+	}
 
-    .radio-member-gender{
+	.radio-member-gender{
 
-    }
+	}
 
-    .register-form{
-        font-size:14px;
-        font-family:'Segoe UI'
-    }
-    .data-row{
-        position:relative;
-        width:100%;
-        height:35px;
-    }
-    .data-column-title{
-        width:30%;
-        position:relative;
-        float:left;
-        padding:1px 0px;
-    }
-    .data-column-input{
-        width:70%;
-        position:relative;
-        float:left;
-        padding:1px 0px;
-    }
+	.register-form{
+		font-size:14px;
+		font-family:'Segoe UI'
+	}
+	.data-row{
+		position:relative;
+		width:100%;
+		height:35px;
+	}
+	.data-column-title{
+		width:30%;
+		position:relative;
+		float:left;
+		padding:1px 0px;
+	}
+	.data-column-input{
+		width:70%;
+		position:relative;
+		float:left;
+		padding:1px 0px;
+	}
 </style>
 
 <script type="text/javascript">
-    $("#txtDOB").mask("99/99/9999", { clearIfNotMatch: true });
-    $("#txtDOB").datepicker();//"option", "showAnim", "blind");//{ minDate: -20, maxDate: "+1M +10D" });
-    $("#txtIcPassport").mask('999999-99-9999');
+	$("#txtDOB").mask("99/99/9999", { clearIfNotMatch: true });
+	$("#txtDOB").datepicker();//"option", "showAnim", "blind");//{ minDate: -20, maxDate: "+1M +10D" });
+	$("#txtIcPassport").mask('999999-99-9999');
 </script>

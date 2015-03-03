@@ -72,7 +72,9 @@ namespace GoPulauV01.Models
 
 		//[Display(Name = "Email")]
 		//public string Email { get; set; }
-
+		[Display(Name = "Subscribe to Latest News & Promotion")]
+		public int IsSubscribeLatestNews { get; set; }
+		
 		public int IsActive { get; set; }
 
 		public int CreatedUserId { get; set; }

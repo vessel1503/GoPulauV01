@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoPulauV01.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -91,13 +92,13 @@ namespace GoPulauV01.Models
     public class CustomMemberUpdateModel
     {
         public LocalPasswordModel localPasswordModel { get; set; }
-        public Member MemberModel { get; set; }
+		public ExtendedMember MemberModel { get; set; }
     }
 
     public class CustomRegisterModel
     {
         public RegisterModel LoginModel { get; set; }
-        public Member MemberModel { get; set; }
+        public ExtendedMember MemberModel { get; set; }
     }
 
     public class ExternalLogin

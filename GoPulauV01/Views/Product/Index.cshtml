@@ -6,6 +6,7 @@
 <h2>Journery Package</h2>
 <div class="journey-package-wrapper">
     <div class="journey-package-container">
+		<!--XMT id:1,2,3-->
         <div class="journey-package-row">
             <div class="journey-package-column-left">
                 Package A
@@ -18,7 +19,7 @@
             </div>
             <div class="journey-package-column-right">
                 View Details
-				<input id="btnPackageA" type="button" value="Order" onclick="@("window.location.href='" + @Url.Action("ProcessOrder", "Order", new { id = "1" }) + "'");" />
+				<input id="btnPackageA" type="button" value="Order" onclick="@("window.location.href='" + @Url.Action("ProcessOrder", "Order", new { id = 1 }) + "'");" />
             </div>
         </div>
         <div class="journey-package-row">
@@ -33,7 +34,7 @@
             </div>
             <div class="journey-package-column-right">
                 View Details
-				<input id="btnPackageB" type="button" value="Order" onclick="@("window.location.href='" + @Url.Action("ProcessOrder", "Order", new { id = "2" }) + "'");" />
+				<input id="btnPackageB" type="button" value="Order" onclick="@("window.location.href='" + @Url.Action("ProcessOrder", "Order", new { id = 2 }) + "'");" />
             </div>
         </div>
         <div class="journey-package-row">
@@ -48,9 +49,76 @@
             </div>
             <div class="journey-package-column-right">
                 View Details
-				<input id="btnPackageC" type="button" value="Order" onclick="@("window.location.href='" + @Url.Action("ProcessOrder", "Order", new { id = "3" }) + "'");" />
+				<input id="btnPackageC" type="button" value="Order" onclick="@("window.location.href='" + @Url.Action("ProcessOrder", "Order", new { id = 3 }) + "'");" />
             </div>
         </div>
+		<!--End of XMT-->
+		<br />
+		<!--CHH id:4,5-->
+		<div class="journey-package-row">
+			<div class="journey-package-column-left">
+				Package A2
+			</div>
+			<div class="journey-package-column-left-middle">
+				RM 388 (3 Days 2 Nights)
+			</div>
+			<div class="journey-package-column-middle-right">
+				BBQ, Steamboat
+			</div>
+			<div class="journey-package-column-right">
+				View Details
+				<input id="btnPackageA" type="button" value="Order" onclick="@("window.location.href='" + @Url.Action("ProcessOrder", "Order", new { id = 4 }) + "'");" />
+			</div>
+		</div>
+		<div class="journey-package-row">
+			<div class="journey-package-column-left">
+				Package B2
+			</div>
+			<div class="journey-package-column-left-middle">
+				RM 188 (2 Days 1 Night)
+			</div>
+			<div class="journey-package-column-middle-right">
+				Visit Templers
+			</div>
+			<div class="journey-package-column-right">
+				View Details
+				<input id="btnPackageB" type="button" value="Order" onclick="@("window.location.href='" + @Url.Action("ProcessOrder", "Order", new { id = 5 }) + "'");" />
+			</div>
+		</div>
+		<!--End of CHH-->
+		<br />
+		<!--WZ id:6,7-->
+		<div class="journey-package-row">
+			<div class="journey-package-column-left">
+				Package A3
+			</div>
+			<div class="journey-package-column-left-middle">
+				RM 388 (3 Days 2 Nights)
+			</div>
+			<div class="journey-package-column-middle-right">
+				BBQ, Steamboat
+			</div>
+			<div class="journey-package-column-right">
+				View Details
+				<input id="btnPackageA" type="button" value="Order" onclick="@("window.location.href='" + @Url.Action("ProcessOrder", "Order", new { id = 6 }) + "'");" />
+			</div>
+		</div>
+		<div class="journey-package-row">
+			<div class="journey-package-column-left">
+				Package B3
+			</div>
+			<div class="journey-package-column-left-middle">
+				RM 188 (2 Days 1 Night)
+			</div>
+			<div class="journey-package-column-middle-right">
+				Visit Templers
+			</div>
+			<div class="journey-package-column-right">
+				View Details
+				<input id="btnPackageB" type="button" value="Order" onclick="@("window.location.href='" + @Url.Action("ProcessOrder", "Order", new { id = 7 }) + "'");" />
+			</div>
+		</div>
+		<!--End of WZ-->
     </div>
 </div>
 

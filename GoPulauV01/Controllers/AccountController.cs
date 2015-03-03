@@ -15,6 +15,8 @@ using Newtonsoft.Json;
 using System.Data;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using AutoMapper;
+using GoPulauV01.Models.ViewModels;
 
 namespace GoPulauV01.Controllers
 {
@@ -90,13 +92,19 @@ namespace GoPulauV01.Controllers
 					using (var db = new UsersContext())
 					{
 						int userId = db.UserProfiles.Single(m => m.UserName == model.LoginModel.UserName).UserId;
-						model.MemberModel.UserId = userId;
-						model.MemberModel.CreatedDateTime = DateTime.Now;
-						model.MemberModel.ModifiedDateTime = DateTime.Now;
-						model.MemberModel.CreatedUserId = userId;//TODO - set to 0
-						model.MemberModel.ModifiedUserId = userId;//TODO - set to 0
+						//TODO > using AutoMapper to ignore the IsSubsribeLatestNewsValue property.
+						//TODO > default is checked.
+						var aMemberModel = new Member();
+						Mapper.CreateMap<ExtendedMember, Member>();					
+						Mapper.Map(model.MemberModel, aMemberModel);
+
+						aMemberModel.UserId = userId;
+						aMemberModel.CreatedDateTime = DateTime.Now;
+						aMemberModel.ModifiedDateTime = DateTime.Now;
+						aMemberModel.CreatedUserId = userId;//TODO - set to 0
+						aMemberModel.ModifiedUserId = userId;//TODO - set to 0
 						var dbMember = new MemberContext();
-						dbMember.Member.Add(model.MemberModel);
+						dbMember.Member.Add(aMemberModel);
 						dbMember.SaveChanges();
 					}
 
@@ -151,8 +159,11 @@ namespace GoPulauV01.Controllers
 			CustomMemberUpdateModel member = new CustomMemberUpdateModel();
 			using (var dbMember = new MemberContext())
 			{
-				var currentMember = dbMember.Member.Find(currentUserId);                
-				member.MemberModel = currentMember;
+				var currentMember = dbMember.Member.Find(currentUserId);
+				var aExtendedMember = new ExtendedMember();
+				Mapper.CreateMap<Member, ExtendedMember>();
+				Mapper.Map(currentMember, aExtendedMember);
+				member.MemberModel = aExtendedMember;
 			}
 
 			ViewBag.StatusMessage =
@@ -279,7 +290,7 @@ namespace GoPulauV01.Controllers
 			if (String.IsNullOrEmpty(model))
 				throw new HttpException(404, "Update Member Failed");
 
-			var localMember = JsonConvert.DeserializeObject<Member>(model);
+			var localMember = JsonConvert.DeserializeObject<ExtendedMember>(model);
 			//ViewBag.SelectedTab = "UpdateMember";
 			//var localMember = model.MemberModel;
 			using (var dbMember = new MemberContext())
@@ -299,6 +310,7 @@ namespace GoPulauV01.Controllers
 					member.Country = localMember.Country;
 					member.Dob = localMember.Dob;
 					member.Gender = localMember.Gender;
+					member.IsSubscribeLatestNews = localMember.IsSubscribeLatestNews;
 					try
 					{
 						dbMember.SaveChanges();

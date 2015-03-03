@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoPulauV01.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,11 +17,12 @@ namespace GoPulauV01.Controllers
 			return View();
 		}
 
-		public ActionResult ProcessOrder(string id)
+		public ActionResult ProcessOrder(int id)
 		{
 			if (User.Identity.IsAuthenticated){
-
-				return View();
+				var objProduct = new Product();
+				objProduct.ProductId = id;
+				return View(objProduct);
 			}
 			else
 			{

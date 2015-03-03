@@ -4,234 +4,244 @@
 
 @*@using (Html.BeginForm("UpdateMember", "Account"))
 {
-    @Html.AntiForgeryToken()*@
-    @*@Html.ValidationSummary()*@
+	@Html.AntiForgeryToken()*@
+	@*@Html.ValidationSummary()*@
 
-    <fieldset>
-        <legend>Update Member Info Form</legend>
-        @Html.HiddenFor(m => m.MemberModel.MemberId)
-        <div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Name)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Name, new { id = "txtMemberName"})
-                </div>
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Ic_Passport)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Ic_Passport, new { id = "txtMemberIcPassport" })
-                </div>
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Gender)
-                </div>
-                <div class="data-column-input">
-                    @Html.RadioButtonFor(m => m.MemberModel.Gender, "M", new { id = "radMemberGenderMale", @class = "radio-member-gender", Checked = "checked" })
-                    @Html.Label("radMemberGenderMale", "Male")
-                    @Html.RadioButtonFor(m => m.MemberModel.Gender, "F", new { id = "radMemberGenderFemale", @class = "radio-member-gender" })
-                    @Html.Label("radMemberGenderFemale", "Female")
-                </div>
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Dob)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Dob, new { id = "txtMemberDob" })
-                </div>
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Race)
-                </div>
-                <div class="data-column-input">
-                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Malay", new { id = "radMemberRaceMalay", Checked = "checked" })
-                    @Html.Label("radMemberRaceMalay", "Malay")
-                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Chinese", new { id = "radMemberRaceChinese" })
-                    @Html.Label("radMemberRaceChinese", "Chinese")
-                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Indian", new { id = "radMemberRaceIndian" })
-                    @Html.Label("radMemberRaceIndian", "Indian")
-                    @Html.RadioButtonFor(m => m.MemberModel.Race, "Others", new { id = "radMemberRaceOthers" })
-                    @Html.Label("radMemberRaceOthers", "Others")
-                </div>
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Religion)
-                </div>
-                <div class="data-column-input">
-                    @Html.DropDownListFor(m => m.MemberModel.Religion, new List<SelectListItem>{
-                                        new SelectListItem { Text="Islam", Value="ISL" },
-                                        new SelectListItem { Text="Buddhism", Value="BUD" },
-                                        new SelectListItem { Text="Hinduism", Value="HIN" },
-                                        new SelectListItem { Text="Others", Value="OTH" },
-                    }, "Select Religion", new { id = "ddlMemberReligion"})
-                </div>
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Occupation)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Occupation, new { id = "txtMemberOccupation" })
-                </div>
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Address)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.Address, new { id = "txtMemberAddress" })
-                </div>
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.PostalCode)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.PostalCode, new { id = "txtMemberPostalCode" })
-                </div>
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.State)
-                </div>
-                <div class="data-column-input">
-                    @*@Html.TextBoxFor(m => m.MemberModel.State)*@
-                    @Html.DropDownListFor(m => m.MemberModel.State, new List<SelectListItem>{
-                                        new SelectListItem { Text="Johor", Value="Johor" },
-                                        new SelectListItem { Text="Kedah", Value="Kedah" },
-                                        new SelectListItem { Text="Kelantan", Value="Kelantan" },
-                                        new SelectListItem { Text="Kuala Lumpur", Value="Kuala Lumpur"},
-                                        new SelectListItem { Text="Melaka", Value="Melaka" },
-                                        new SelectListItem { Text="Pahang", Value="Pahang" },
-                                        new SelectListItem { Text="Penang", Value="Penang" },
-                                        new SelectListItem { Text="Perak", Value="Perak" },
-                                        new SelectListItem { Text="Perlis", Value="Perlis" },
-                                        new SelectListItem { Text="Sabah", Value="Sabah" },
-                                        new SelectListItem { Text="Sarawak", Value="Sarawak" },
-                                        new SelectListItem { Text="Selangor", Value="Selangor" },
-                                        new SelectListItem { Text="Seremban", Value="Seremban" },
-                                        new SelectListItem { Text="Terengganu", Value="Terengganu" }
-                    }, "Select State", new { id = "ddlMemberState" })
-                </div>
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.Country)
-                </div>
-                <div class="data-column-input">
-                    @Html.DropDownListFor(m => m.MemberModel.Country,  new List<SelectListItem>{
-                                        new SelectListItem { Text="Malaysia", Value="Malaysia" },
-                                        //new SelectListItem { Text="Singapore", Value="Singapore" },
-                                        //new SelectListItem { Text="Thailand", Value="Thailand" },
-                    }, "Select Country", new { id = "ddlMemberCountry" })
-                </div>
-            </div>
-            <div class="data-row">
-                <div class="data-column-title">
-                    @Html.LabelFor(m => m.MemberModel.PhoneNo)
-                </div>
-                <div class="data-column-input">
-                    @Html.TextBoxFor(m => m.MemberModel.PhoneNo, new { id = "txtMemberPhoneNo" })
-                </div>
-            </div>
+	<fieldset>
+		<legend>Update Member Info Form</legend>
+		@Html.HiddenFor(m => m.MemberModel.MemberId)
+		<div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Name)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.Name, new { id = "txtMemberName"})
+				</div>
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Ic_Passport)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.Ic_Passport, new { id = "txtMemberIcPassport" })
+				</div>
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Gender)
+				</div>
+				<div class="data-column-input">
+					@Html.RadioButtonFor(m => m.MemberModel.Gender, "M", new { id = "radMemberGenderMale", @class = "radio-member-gender", Checked = "checked" })
+					@Html.Label("radMemberGenderMale", "Male")
+					@Html.RadioButtonFor(m => m.MemberModel.Gender, "F", new { id = "radMemberGenderFemale", @class = "radio-member-gender" })
+					@Html.Label("radMemberGenderFemale", "Female")
+				</div>
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Dob)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.Dob, new { id = "txtMemberDob" })
+				</div>
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Race)
+				</div>
+				<div class="data-column-input">
+					@Html.RadioButtonFor(m => m.MemberModel.Race, "Malay", new { id = "radMemberRaceMalay", Checked = "checked" })
+					@Html.Label("radMemberRaceMalay", "Malay")
+					@Html.RadioButtonFor(m => m.MemberModel.Race, "Chinese", new { id = "radMemberRaceChinese" })
+					@Html.Label("radMemberRaceChinese", "Chinese")
+					@Html.RadioButtonFor(m => m.MemberModel.Race, "Indian", new { id = "radMemberRaceIndian" })
+					@Html.Label("radMemberRaceIndian", "Indian")
+					@Html.RadioButtonFor(m => m.MemberModel.Race, "Others", new { id = "radMemberRaceOthers" })
+					@Html.Label("radMemberRaceOthers", "Others")
+				</div>
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Religion)
+				</div>
+				<div class="data-column-input">
+					@Html.DropDownListFor(m => m.MemberModel.Religion, new List<SelectListItem>{
+										new SelectListItem { Text="Islam", Value="ISL" },
+										new SelectListItem { Text="Buddhism", Value="BUD" },
+										new SelectListItem { Text="Hinduism", Value="HIN" },
+										new SelectListItem { Text="Others", Value="OTH" },
+					}, "Select Religion", new { id = "ddlMemberReligion"})
+				</div>
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Occupation)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.Occupation, new { id = "txtMemberOccupation" })
+				</div>
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Address)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.Address, new { id = "txtMemberAddress" })
+				</div>
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.PostalCode)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.PostalCode, new { id = "txtMemberPostalCode" })
+				</div>
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.State)
+				</div>
+				<div class="data-column-input">
+					@*@Html.TextBoxFor(m => m.MemberModel.State)*@
+					@Html.DropDownListFor(m => m.MemberModel.State, new List<SelectListItem>{
+										new SelectListItem { Text="Johor", Value="Johor" },
+										new SelectListItem { Text="Kedah", Value="Kedah" },
+										new SelectListItem { Text="Kelantan", Value="Kelantan" },
+										new SelectListItem { Text="Kuala Lumpur", Value="Kuala Lumpur"},
+										new SelectListItem { Text="Melaka", Value="Melaka" },
+										new SelectListItem { Text="Pahang", Value="Pahang" },
+										new SelectListItem { Text="Penang", Value="Penang" },
+										new SelectListItem { Text="Perak", Value="Perak" },
+										new SelectListItem { Text="Perlis", Value="Perlis" },
+										new SelectListItem { Text="Sabah", Value="Sabah" },
+										new SelectListItem { Text="Sarawak", Value="Sarawak" },
+										new SelectListItem { Text="Selangor", Value="Selangor" },
+										new SelectListItem { Text="Seremban", Value="Seremban" },
+										new SelectListItem { Text="Terengganu", Value="Terengganu" }
+					}, "Select State", new { id = "ddlMemberState" })
+				</div>
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.Country)
+				</div>
+				<div class="data-column-input">
+					@Html.DropDownListFor(m => m.MemberModel.Country,  new List<SelectListItem>{
+										new SelectListItem { Text="Malaysia", Value="Malaysia" },
+										//new SelectListItem { Text="Singapore", Value="Singapore" },
+										//new SelectListItem { Text="Thailand", Value="Thailand" },
+					}, "Select Country", new { id = "ddlMemberCountry" })
+				</div>
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.PhoneNo)
+				</div>
+				<div class="data-column-input">
+					@Html.TextBoxFor(m => m.MemberModel.PhoneNo, new { id = "txtMemberPhoneNo" })
+				</div>
+			</div>
+			<div class="data-row">
+				<div class="data-column-title">
+					@Html.LabelFor(m => m.MemberModel.IsSubscribeLatestNews)
+				</div>
+				<div class="data-column-input">
+					@Html.CheckBoxFor(m => m.MemberModel.IsSubscribeLatestNewsValue, new { id = "chkIsSubscribeLatestNews" })
+				</div>
+			</div>
             
-        </div>
-        <input id="btnUpdateMember" type="button" value="Update" />
-    </fieldset>
+		</div>
+		<input id="btnUpdateMember" type="button" value="Update" />
+	</fieldset>
 @*}*@
 
 <script type="text/javascript">
 
-    $('#btnUpdateMember').click(function () {
+	$('#btnUpdateMember').click(function () {
 
-        var memberName = $('#txtMemberName').val();
-        var memberIcPassport = $('#txtMemberIcPassport').val();
-        var memberDob = $('#txtMemberDob').val();
-        var memberOccupation = $('#txtMemberOccupation').val();
-        var memberAddress = $('#txtMemberAddress').val();
-        var memberPostalCode = $('#txtMemberPostalCode').val();
-        var memberPhoneNo = $('#txtMemberPhoneNo').val();
-        var memberGender = $('input[name="MemberModel.Gender"]:checked').val()
-        var memberRace = $('input[name="MemberModel.Race"]:checked').val()
-        var memberReligion = $('#ddlMemberReligion').val();
-        var memberState = $('#ddlMemberState').val();
-        var memberCountry = $('#ddlMemberCountry').val();
+		var memberName = $('#txtMemberName').val();
+		var memberIcPassport = $('#txtMemberIcPassport').val();
+		var memberDob = $('#txtMemberDob').val();
+		var memberOccupation = $('#txtMemberOccupation').val();
+		var memberAddress = $('#txtMemberAddress').val();
+		var memberPostalCode = $('#txtMemberPostalCode').val();
+		var memberPhoneNo = $('#txtMemberPhoneNo').val();
+		var memberGender = $('input[name="MemberModel.Gender"]:checked').val()
+		var memberRace = $('input[name="MemberModel.Race"]:checked').val()
+		var memberReligion = $('#ddlMemberReligion').val();
+		var memberState = $('#ddlMemberState').val();
+		var memberCountry = $('#ddlMemberCountry').val();
+		var memberIsSubscribeLatestNews = $('#chkIsSubscribeLatestNews').is(":checked");
 
-        var editedMember = {};
-        editedMember.MemberId = @Model.MemberModel.MemberId;
-        editedMember.Name = memberName;
-        editedMember.Ic_Passport = memberIcPassport;
-        editedMember.Dob = memberDob;
-        editedMember.Occupation = memberOccupation;
-        editedMember.Address = memberAddress;
-        editedMember.PostalCode = memberPostalCode;
-        editedMember.PhoneNo = memberPhoneNo;
-        editedMember.Gender = memberGender;
-        editedMember.Race = memberRace;
-        editedMember.Religion = memberReligion;
-        editedMember.State = memberState;
-        editedMember.Country = memberCountry;
+		var editedMember = {};
+		editedMember.MemberId = @Model.MemberModel.MemberId;
+		editedMember.Name = memberName;
+		editedMember.Ic_Passport = memberIcPassport;
+		editedMember.Dob = memberDob;
+		editedMember.Occupation = memberOccupation;
+		editedMember.Address = memberAddress;
+		editedMember.PostalCode = memberPostalCode;
+		editedMember.PhoneNo = memberPhoneNo;
+		editedMember.Gender = memberGender;
+		editedMember.Race = memberRace;
+		editedMember.Religion = memberReligion;
+		editedMember.State = memberState;
+		editedMember.Country = memberCountry;
+		editedMember.IsSubscribeLatestNewsValue = memberIsSubscribeLatestNews;
         
-        var stringMember = JSON.stringify(editedMember);
-        var updateMemberInput = { model : stringMember };
-        ny.ajaxPost('/Account/UpdateMember', updateMemberInput);
-    });
+		var stringMember = JSON.stringify(editedMember);
+		var updateMemberInput = { model : stringMember };
+		ny.ajaxPost('/Account/UpdateMember', updateMemberInput);
+	});
 
 </script>
 <style type="text/css">
-    input[type=radio] {
-        width: auto;
-        margin-right: 10px;
-        float: left;
-    }
+	input[type=radio] {
+		width: auto;
+		margin-right: 10px;
+		float: left;
+	}
 
-        input[type=radio] + label {
-            width: auto;
-            float: left;
-            margin-right: 20px;
-        }
+		input[type=radio] + label {
+			width: auto;
+			float: left;
+			margin-right: 20px;
+		}
 
-    input[type=text] {
-        margin: 0px;
-    }
+	input[type=text] {
+		margin: 0px;
+	}
 
-    input[type=password] {
-        margin: 0px;
-    }
+	input[type=password] {
+		margin: 0px;
+	}
 
-    .radio-member-gender {
-    }
+	.radio-member-gender {
+	}
 
-    .member-update-form {
-        font-size: 14px;
-        font-family: 'Segoe UI';
-    }
+	.member-update-form {
+		font-size: 14px;
+		font-family: 'Segoe UI';
+	}
 
-    .data-row {
-        position: relative;
-        width: 100%;
-        height: 35px;
-    }
+	.data-row {
+		position: relative;
+		width: 100%;
+		height: 35px;
+	}
 
-    .data-column-title {
-        width: 30%;
-        position: relative;
-        float: left;
-        padding: 1px 0px;
-    }
+	.data-column-title {
+		width: 30%;
+		position: relative;
+		float: left;
+		padding: 1px 0px;
+	}
 
-    .data-column-input {
-        width: 70%;
-        position: relative;
-        float: left;
-        padding: 1px 0px;
-    }
+	.data-column-input {
+		width: 70%;
+		position: relative;
+		float: left;
+		padding: 1px 0px;
+	}
 </style>

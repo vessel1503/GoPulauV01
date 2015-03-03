@@ -24,25 +24,21 @@ namespace GoPulauV01.Models
 		[DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
 		public int OrderNo { get; set; }
 
-		//TODO - Move out
-		[Required]
-		public int ProductId { get; set; }
-
 		[Required]
 		[Display(Name="Order Date")]
 		public DateTime OrderDateTime { get; set; }
 
 		[Required]
-		[Display(Name = "Price")]
-		public double PriceOnThatDay { get; set; }
-
-		[Required]
-		[Display(Name = "Quantity")]
-		public int Quantity { get; set; }
-
-		[Required]
 		[Display(Name = "Total Amount")]
 		public double TotalAmount { get; set; }
+
+		[Required]
+		[Display(Name = "Discount")]
+		public double Discount { get; set; }
+		
+		[Required]
+		[Display(Name = "Net Amount")]
+		public double NetAmount { get; set; }
 
 		[Required]
 		[Display(Name = "Order Status")]
@@ -61,5 +57,7 @@ namespace GoPulauV01.Models
 		[ForeignKey("Member")]
 		public int MemberId { get; set; }
 		public virtual Member Member { get; set; }
+
+		public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 	}
 }

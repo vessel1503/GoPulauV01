@@ -1,7 +1,173 @@
-﻿@model GoPulauV01.Models.Order
+﻿@model GoPulauV01.Models.Product 
+@*TODO - future will change this to List of Product*@
 @{
     ViewBag.Title = "ProcessOrder";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ProcessOrder</h2>
+<h2>Process Order</h2>
+
+<div class="main-wrapper">
+	<div class="panel-left">
+		@*@Model.ProductId*@
+
+		<div class="content-row">
+			<div class="content-product-image">Image A</div>
+			<div class="content-product-details">Motel A VIP Room</div>
+			<div class="content-product-quantity">
+				<select>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+		</div>
+		<div class="content-row">
+			<div class="content-product-image">Image B</div>
+			<div class="content-product-details">Motel A Deluxe Room </div>
+			<div class="content-product-quantity">
+				<select>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+		</div>
+
+	</div>
+	<div class="panel-right">
+		<div class="panel-summary-left">
+			From Date
+		</div>
+		<div class="panel-summary-right">
+			<input type="text" readonly id="datepicker-from" placeholder="Click to select a date" />
+		</div>
+		<div class="panel-summary-left">
+			To Date
+		</div>
+		<div class="panel-summary-right">
+			<input type="text" readonly id="datepicker-to" placeholder="Click to select a date" />
+		</div>
+		<div class="panel-summary-left">
+			
+		</div>
+		<div class="panel-summary-right">
+			<div id="toggleVisibilityOfDay" style="display:none">
+				<div id="numberOfDays">1</div> Day(s)
+			</div>
+		</div>
+	</div>
+</div>
+
+<style type="text/css">
+	.main-wrapper{
+		width:100%;
+		height:300px;
+	}
+	.panel-left{
+		width:65%;
+		height:100%;
+		float:left;
+		background-color:lightblue;
+	}
+	.panel-right {
+		width:35%;
+		height:100%;
+		float:left;
+		background-color:lightgreen;
+	}
+	.content-row{
+		width:100%;
+		height:35px;
+	}
+	.content-product-image{
+		width:25%;
+		float:left;
+	}
+	.content-product-details{
+		width:55%;
+		float:left;
+	}
+	.content-product-quantity{
+		width:20%;
+		float:left;
+	}
+	.panel-summary-left{
+		width:30%;
+		float:left;
+	}
+	.panel-summary-right{
+		 width:70%;
+		 float:left;
+	}
+</style>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		var datepickerFrom = $('#datepicker-from');
+		var datepickerTo = $('#datepicker-to');
+		var divToggelVisibilityOfDays = $('#toggleVisibilityOfDay');
+		var divNumberOfDays = $('#numberOfDays');
+
+		datepickerFrom.datepicker({
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 2,
+			showWeek: true,
+			minDate: +1,
+			maxDate: "+5Y",
+			defaultDate: +1,
+			onClose: function (selectedDate) {
+				datepickerTo.datepicker("option", "minDate", selectedDate);
+				var selectedToDate = datepickerTo.val();
+				if (selectedDate != '' && selectedToDate != '') {
+					var dateFrom = new Date(selectedDate);
+					var dateTo = new Date(selectedToDate);
+					var timeDateFrom = dateFrom.getTime();
+					var timeDateTo =  dateTo.getTime();
+					var timeDiff = Math.abs(timeDateTo - timeDateFrom);
+					var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+					divNumberOfDays.text(diffDays);
+
+					divToggelVisibilityOfDays.show();
+				}
+				else {
+					divToggelVisibilityOfDays.hide();
+				}
+			}
+		});
+		datepickerTo.datepicker({
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 2,
+			showWeek: true,
+			minDate: +2,
+			maxDate: "+5Y",
+			defaultDate: +2,
+			onClose: function (selectedDate) {
+				datepickerFrom.datepicker("option", "maxDate", selectedDate);
+				var selectedFromDate = datepickerFrom.val();
+				if (selectedDate != '' && selectedFromDate != '') {
+					var dateFrom = new Date(selectedFromDate);
+					var dateTo = new Date(selectedDate);
+					var timeDateFrom = dateFrom.getTime();
+					var timeDateTo = dateTo.getTime();
+					var timeDiff = Math.abs(timeDateTo - timeDateFrom);
+					var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+					divNumberOfDays.text(diffDays);
+
+					divToggelVisibilityOfDays.show();
+				}
+				else {
+					divToggelVisibilityOfDays.hide();
+				}
+			}
+		});
+
+	});
+</script>
