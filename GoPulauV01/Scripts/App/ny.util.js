@@ -15,12 +15,19 @@ ny.ajaxPost = function (url, jsonData) {//, success, error
         url: serverUrl + url,
         data: jsonData,//JSON.stringify(jsonData),        
         success: function (response) {
-            if (response) {
-                alert(response.responseText);
-            }
-            else {
-                alert('Unknown Error');
-            }
+        	if (!response) {
+        		alert('No response in the return function.');
+        		return;
+        	}
+
+        	if (response.supportAlert) {
+        		alert(response.alertText);
+        	}
+
+        	if (response.supportRedirect) {
+        		window.location.href = response.redirectUrl;
+        	}
+           
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert('Unknown Error');

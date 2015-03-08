@@ -16,7 +16,13 @@
 					@Html.LabelFor(m => m.MemberModel.Name)
 				</div>
 				<div class="data-column-input">
-					@Html.TextBoxFor(m => m.MemberModel.Name, new { id = "txtMemberName"})
+					@Html.TextBoxFor(m => m.MemberModel.Name, new { id = "txtMemberName", @placeholder = "@Example: Steve Job" })
+				</div>
+			</div>
+			<div class="data-row invisible-default" id="warningMemberName">
+				<div class="data-column-title">
+				</div>
+				<div class="data-column-input-warning" id="warningMemberNameMessage">
 				</div>
 			</div>
 			<div class="data-row">
@@ -24,7 +30,13 @@
 					@Html.LabelFor(m => m.MemberModel.Ic_Passport)
 				</div>
 				<div class="data-column-input">
-					@Html.TextBoxFor(m => m.MemberModel.Ic_Passport, new { id = "txtMemberIcPassport" })
+					@Html.TextBoxFor(m => m.MemberModel.Ic_Passport, new { id = "txtMemberIcPassport", @placeholder = "@Example: 990123-10-1234" })
+				</div>
+			</div>
+			<div class="data-row invisible-default" id="warningMemberIcPassport">
+				<div class="data-column-title">
+				</div>
+				<div class="data-column-input-warning" id="warningMemberIcPassportMessage">
 				</div>
 			</div>
 			<div class="data-row">
@@ -43,7 +55,13 @@
 					@Html.LabelFor(m => m.MemberModel.Dob)
 				</div>
 				<div class="data-column-input">
-					@Html.TextBoxFor(m => m.MemberModel.Dob, new { id = "txtMemberDob" })
+					@Html.TextBoxFor(m => m.MemberModel.Dob, new { id = "txtMemberDob", @placeholder = "@Example: DD/MM/YYYY" })
+				</div>
+			</div>
+			<div class="data-row invisible-default" id="warningMemberDob">
+				<div class="data-column-title">
+				</div>
+				<div class="data-column-input-warning" id="warningMemberDobMessage">
 				</div>
 			</div>
 			<div class="data-row">
@@ -71,7 +89,13 @@
 										new SelectListItem { Text="Buddhism", Value="BUD" },
 										new SelectListItem { Text="Hinduism", Value="HIN" },
 										new SelectListItem { Text="Others", Value="OTH" },
-					}, "Select Religion", new { id = "ddlMemberReligion"})
+					}, "Select Religion", new { id = "ddlMemberReligion" })
+				</div>
+			</div>
+			<div class="data-row invisible-default" id="warningMemberReligion">
+				<div class="data-column-title">
+				</div>
+				<div class="data-column-input-warning" id="warningMemberReligionMessage">
 				</div>
 			</div>
 			<div class="data-row">
@@ -79,7 +103,13 @@
 					@Html.LabelFor(m => m.MemberModel.Occupation)
 				</div>
 				<div class="data-column-input">
-					@Html.TextBoxFor(m => m.MemberModel.Occupation, new { id = "txtMemberOccupation" })
+					@Html.TextBoxFor(m => m.MemberModel.Occupation, new { id = "txtMemberOccupation", @placeholder = "@Example: Student" })
+				</div>
+			</div>
+			<div class="data-row invisible-default" id="warningMemberOccupation">
+				<div class="data-column-title">
+				</div>
+				<div class="data-column-input-warning" id="warningMemberOccupationMessage">
 				</div>
 			</div>
 			<div class="data-row">
@@ -87,7 +117,13 @@
 					@Html.LabelFor(m => m.MemberModel.Address)
 				</div>
 				<div class="data-column-input">
-					@Html.TextBoxFor(m => m.MemberModel.Address, new { id = "txtMemberAddress" })
+					@Html.TextBoxFor(m => m.MemberModel.Address, new { id = "txtMemberAddress", @placeholder = "@Example: A-03-04 Jalan Satu, Taman Baru." })
+				</div>
+			</div>
+			<div class="data-row invisible-default" id="warningMemberAddress">
+				<div class="data-column-title">
+				</div>
+				<div class="data-column-input-warning" id="warningMemberAddressMessage">
 				</div>
 			</div>
 			<div class="data-row">
@@ -95,7 +131,13 @@
 					@Html.LabelFor(m => m.MemberModel.PostalCode)
 				</div>
 				<div class="data-column-input">
-					@Html.TextBoxFor(m => m.MemberModel.PostalCode, new { id = "txtMemberPostalCode" })
+					@Html.TextBoxFor(m => m.MemberModel.PostalCode, new { id = "txtMemberPostalCode", @placeholder = "@Example: 99999" })
+				</div>
+			</div>
+			<div class="data-row invisible-default" id="warningMemberPostalCode">
+				<div class="data-column-title">
+				</div>
+				<div class="data-column-input-warning" id="warningMemberPostalCodeMessage">
 				</div>
 			</div>
 			<div class="data-row">
@@ -122,16 +164,28 @@
 					}, "Select State", new { id = "ddlMemberState" })
 				</div>
 			</div>
+			<div class="data-row invisible-default" id="warningMemberState">
+				<div class="data-column-title">
+				</div>
+				<div class="data-column-input-warning" id="warningMemberStateMessage">
+				</div>
+			</div>
 			<div class="data-row">
 				<div class="data-column-title">
 					@Html.LabelFor(m => m.MemberModel.Country)
 				</div>
 				<div class="data-column-input">
-					@Html.DropDownListFor(m => m.MemberModel.Country,  new List<SelectListItem>{
+					@Html.DropDownListFor(m => m.MemberModel.Country, new List<SelectListItem>{
 										new SelectListItem { Text="Malaysia", Value="Malaysia" },
 										//new SelectListItem { Text="Singapore", Value="Singapore" },
 										//new SelectListItem { Text="Thailand", Value="Thailand" },
 					}, "Select Country", new { id = "ddlMemberCountry" })
+				</div>
+			</div>
+			<div class="data-row invisible-default" id="warningMemberCountry">
+				<div class="data-column-title">
+				</div>
+				<div class="data-column-input-warning" id="warningMemberCountryMessage">
 				</div>
 			</div>
 			<div class="data-row">
@@ -139,7 +193,13 @@
 					@Html.LabelFor(m => m.MemberModel.PhoneNo)
 				</div>
 				<div class="data-column-input">
-					@Html.TextBoxFor(m => m.MemberModel.PhoneNo, new { id = "txtMemberPhoneNo" })
+					@Html.TextBoxFor(m => m.MemberModel.PhoneNo, new { id = "txtMemberPhoneNo", @placeholder = "@Example: 012-1234567" })
+				</div>
+			</div>
+			<div class="data-row invisible-default" id="warningMemberPhoneNo">
+				<div class="data-column-title">
+				</div>
+				<div class="data-column-input-warning" id="warningMemberPhoneNoMessage">
 				</div>
 			</div>
 			<div class="data-row">
@@ -158,21 +218,94 @@
 
 <script type="text/javascript">
 
+	var jObjectMemberName = $('#txtMemberName');
+	var jObjectMemberIcPassport = $('#txtMemberIcPassport');
+	var jObjectMemberDob = $('#txtMemberDob');
+	var jObjectMemberOccupation = $('#txtMemberOccupation');
+	var jObjectMemberAddress = $('#txtMemberAddress');
+	var jObjectMemberPostalCode = $('#txtMemberPostalCode');
+	var jObjectMemberPhoneNo = $('#txtMemberPhoneNo');
+	var jObjectMemberGender = $('input[name="MemberModel.Gender"]:checked');
+	var jObjectMemberRace = $('input[name="MemberModel.Race"]:checked');
+	var jObjectMemberReligion = $('#ddlMemberReligion');
+	var jObjectMemberState = $('#ddlMemberState');
+	var jObjectMemberCountry = $('#ddlMemberCountry');
+	var jObjectMemberIsSubscribeLatestNews = $('#chkIsSubscribeLatestNews');
+	
+	//Bind with Jquery UI/Plugins
+	jObjectMemberDob.mask("99/99/9999", { clearIfNotMatch: true });
+	jObjectMemberDob.datepicker();//"option", "showAnim", "blind");//{ minDate: -20, maxDate: "+1M +10D" });
+	jObjectMemberIcPassport.mask('999999-99-9999');
+
+	//Event Bindings
+	jObjectMemberName.keyup(validateMemberName);
+	jObjectMemberIcPassport.keyup(validateMemberIcPassport);
+	jObjectMemberDob.change(validateMemberDob);
+	jObjectMemberOccupation.keyup(validateMemberOccupation);
+	jObjectMemberAddress.keyup(validateMemberAddress);
+	jObjectMemberPostalCode.keyup(validateMemberPostalCode);
+	jObjectMemberPhoneNo.keyup(validateMemberPhoneNo);
+	jObjectMemberReligion.change(validateMemberReligion);
+	jObjectMemberState.change(validateMemberState);
+	jObjectMemberCountry.change(validateMemberCountry);
+
+	function validateMemberName(e){
+		if(e.target.value)
+			$('#warningMemberName').fadeOut('slow');
+	}
+	function validateMemberIcPassport(e){
+		if(e.target.value)
+			$('#warningMemberIcPassport').fadeOut('slow');
+	}
+	function validateMemberDob(e){
+		if(e.target.value)
+			$('#warningMemberDob').fadeOut('slow');
+	}
+	function validateMemberOccupation(e){
+		if(e.target.value)
+			$('#warningMemberOccupation').fadeOut('slow');
+	}
+	function validateMemberAddress(e){
+		if(e.target.value)
+			$('#warningMemberAddress').fadeOut('slow');
+	}
+	function validateMemberPostalCode(e){
+		if(e.target.value)
+			$('#warningMemberPostalCode').fadeOut('slow');
+	}
+	function validateMemberPhoneNo(e){
+		if(e.target.value)
+			$('#warningMemberPhoneNo').fadeOut('slow');
+	}
+	function validateMemberReligion(){
+		if(this.value)
+			$('#warningMemberReligion').fadeOut('slow');
+	}
+	function validateMemberState(){
+		if(this.value)
+			$('#warningMemberState').fadeOut('slow');
+	}
+	function validateMemberCountry(){
+		if(this.value)
+			$('#warningMemberCountry').fadeOut('slow');
+	}
+
+
 	$('#btnUpdateMember').click(function () {
 
-		var memberName = $('#txtMemberName').val();
-		var memberIcPassport = $('#txtMemberIcPassport').val();
-		var memberDob = $('#txtMemberDob').val();
-		var memberOccupation = $('#txtMemberOccupation').val();
-		var memberAddress = $('#txtMemberAddress').val();
-		var memberPostalCode = $('#txtMemberPostalCode').val();
-		var memberPhoneNo = $('#txtMemberPhoneNo').val();
-		var memberGender = $('input[name="MemberModel.Gender"]:checked').val()
-		var memberRace = $('input[name="MemberModel.Race"]:checked').val()
-		var memberReligion = $('#ddlMemberReligion').val();
-		var memberState = $('#ddlMemberState').val();
-		var memberCountry = $('#ddlMemberCountry').val();
-		var memberIsSubscribeLatestNews = $('#chkIsSubscribeLatestNews').is(":checked");
+		var memberName = jObjectMemberName.val();
+		var memberIcPassport = jObjectMemberIcPassport.val();
+		var memberDob = jObjectMemberDob.val();
+		var memberOccupation = jObjectMemberOccupation.val();
+		var memberAddress = jObjectMemberAddress.val();
+		var memberPostalCode = jObjectMemberPostalCode.val();
+		var memberPhoneNo = jObjectMemberPhoneNo.val();
+		var memberGender = jObjectMemberGender.val();
+		var memberRace = jObjectMemberRace.val();
+		var memberReligion = jObjectMemberReligion.val();
+		var memberState = jObjectMemberState.val();
+		var memberCountry = jObjectMemberCountry.val();
+		var memberIsSubscribeLatestNews = jObjectMemberIsSubscribeLatestNews.is(":checked");
 
 		var editedMember = {};
 		editedMember.MemberId = @Model.MemberModel.MemberId;
@@ -189,11 +322,83 @@
 		editedMember.State = memberState;
 		editedMember.Country = memberCountry;
 		editedMember.IsSubscribeLatestNewsValue = memberIsSubscribeLatestNews;
-        
+
+		if(!validateMemberDetails(editedMember)){
+			return;
+		}
 		var stringMember = JSON.stringify(editedMember);
 		var updateMemberInput = { model : stringMember };
 		ny.ajaxPost('/Account/UpdateMember', updateMemberInput);
 	});
+
+	function validateMemberDetails(member){
+		var passValidation = true;
+
+		if(!member.MemberId){
+			promptWarningMessage('Member ID can not be found.');
+			passValidation = false;
+		}
+		if(!member.Name){
+			$('#warningMemberNameMessage').text('Member Name can not be empty.');
+			$('#warningMemberName').show();
+
+			passValidation = false;
+		}
+		if(!member.Ic_Passport){
+			$('#warningMemberIcPassportMessage').text('IC/Passport can not be empty.');
+			$('#warningMemberIcPassport').show();
+
+			passValidation = false;
+		}
+		if(!member.Dob){
+			$('#warningMemberDobMessage').text('Date of Birthday can not be empty.');
+			$('#warningMemberDob').show();
+
+			passValidation = false;
+		}
+		if(!member.Address){
+			$('#warningMemberAddressMessage').text('Address can not be empty.');
+			$('#warningMemberAddress').show();
+
+			passValidation = false;
+		}
+		if(!member.PostalCode){
+			$('#warningMemberPostalCodeMessage').text('Postal Code can not be empty.');
+			$('#warningMemberPostalCode').show();
+
+			passValidation = false;
+		}
+		if(!member.State){
+			$('#warningMemberStateMessage').text('State can not be empty.');
+			$('#warningMemberState').show();
+
+			passValidation = false;
+		}
+		if(!member.Country){
+			$('#warningMemberCountryMessage').text('Country can not be empty.');
+			$('#warningMemberCountry').show();
+			
+			passValidation = false;
+		}
+		if(!member.PhoneNo){
+			$('#warningMemberPhoneNoMessage').text('Phone Number can not be empty.');
+			$('#warningMemberPhoneNo').show();
+
+			passValidation = false;
+		}
+		if(!member.Religion){
+			$('#warningMemberReligionMessage').text('Religion can not be empty.');
+			$('#warningMemberReligion').show();
+
+			passValidation = false;
+		}
+
+		return passValidation;
+	}
+
+	function promptWarningMessage(msg){
+		alert(msg);
+	}
 
 </script>
 <style type="text/css">
@@ -216,9 +421,15 @@
 	input[type=password] {
 		margin: 0px;
 	}
+	::-webkit-input-placeholder { color:#8a8a8a; }
+	::-moz-placeholder { color:#8a8a8a; } /* firefox 19+ */
+	:-ms-input-placeholder { color:#8a8a8a; } /* ie */
+	input:-moz-placeholder { color:#8a8a8a; }
 
-	.radio-member-gender {
+	.invisible-default{
+		display:none;
 	}
+	/*ENd of Common*/
 
 	.member-update-form {
 		font-size: 14px;
@@ -228,7 +439,7 @@
 	.data-row {
 		position: relative;
 		width: 100%;
-		height: 35px;
+		height: 30px;
 	}
 
 	.data-column-title {
@@ -237,11 +448,20 @@
 		float: left;
 		padding: 1px 0px;
 	}
-
 	.data-column-input {
 		width: 70%;
 		position: relative;
 		float: left;
 		padding: 1px 0px;
 	}
+	.data-column-input-warning {
+		width: 70%;
+		position: relative;
+		float: left;
+		padding: 1px 0px;
+		color:red;
+		font-size:12px;
+	}
+
+
 </style>

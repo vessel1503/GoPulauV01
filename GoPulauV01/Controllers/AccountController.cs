@@ -77,52 +77,95 @@ namespace GoPulauV01.Controllers
 		//
 		// POST: /Account/Register
 
+		//[HttpPost]
+		//[AllowAnonymous]
+		//[ValidateAntiForgeryToken]
+		//public ActionResult Register(CustomRegisterModel model)
+		//{
+		//	if (ModelState.IsValid)
+		//	{
+		//		// Attempt to register the user
+		//		try
+		//		{
+		//			WebSecurity.CreateUserAndAccount(model.LoginModel.UserName, model.LoginModel.Password);
+		//			//TODO move to service agent
+		//			using (var db = new UsersContext())
+		//			{
+		//				int userId = db.UserProfiles.Single(m => m.UserName == model.LoginModel.UserName).UserId;
+		//				//TODO > using AutoMapper to ignore the IsSubsribeLatestNewsValue property.
+		//				//TODO > default is checked.
+		//				var aMemberModel = new Member();
+		//				Mapper.CreateMap<ExtendedMember, Member>();					
+		//				Mapper.Map(model.MemberModel, aMemberModel);
+
+		//				aMemberModel.UserId = userId;
+		//				aMemberModel.CreatedDateTime = DateTime.Now;
+		//				aMemberModel.ModifiedDateTime = DateTime.Now;
+		//				aMemberModel.CreatedUserId = userId;//TODO - set to 0
+		//				aMemberModel.ModifiedUserId = userId;//TODO - set to 0
+		//				var dbMember = new MemberContext();
+		//				dbMember.Member.Add(aMemberModel);
+		//				dbMember.SaveChanges();
+		//			}
+
+		//			WebSecurity.Login(model.LoginModel.UserName, model.LoginModel.Password);
+		//			return RedirectToAction("Index", "Home");
+		//		}
+		//		catch (MembershipCreateUserException e)
+		//		{
+		//			ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+		//		}
+		//	}
+
+		//	// If we got this far, something failed, redisplay form
+		//	return View(model);
+		//}
 		[HttpPost]
 		[AllowAnonymous]
-		[ValidateAntiForgeryToken]
-		public ActionResult Register(CustomRegisterModel model)
+		//[ValidateAntiForgeryToken]
+		public ActionResult Register(string model)
 		{
-			if (ModelState.IsValid)
+			if (String.IsNullOrEmpty(model))
+				throw new HttpException(404, "Member Registration Failed");
+
+			var localMember = JsonConvert.DeserializeObject<CustomRegisterModel>(model);
+
+			// Attempt to register the user
+			try
 			{
-				// Attempt to register the user
-				try
+				WebSecurity.CreateUserAndAccount(localMember.LoginModel.UserName, localMember.LoginModel.Password);
+				//TODO move to service agent
+				using (var db = new UsersContext())
 				{
-					WebSecurity.CreateUserAndAccount(model.LoginModel.UserName, model.LoginModel.Password);
-					//TODO move to service agent
-					using (var db = new UsersContext())
-					{
-						int userId = db.UserProfiles.Single(m => m.UserName == model.LoginModel.UserName).UserId;
-						//TODO > using AutoMapper to ignore the IsSubsribeLatestNewsValue property.
-						//TODO > default is checked.
-						var aMemberModel = new Member();
-						Mapper.CreateMap<ExtendedMember, Member>();					
-						Mapper.Map(model.MemberModel, aMemberModel);
+					int userId = db.UserProfiles.Single(m => m.UserName == localMember.LoginModel.UserName).UserId;
+					//TODO > using AutoMapper to ignore the IsSubsribeLatestNewsValue property.
+					//TODO > default is checked.
+					var aMemberModel = new Member();
+					Mapper.CreateMap<ExtendedMember, Member>();
+					Mapper.Map(localMember.MemberModel, aMemberModel);
 
-						aMemberModel.UserId = userId;
-						aMemberModel.CreatedDateTime = DateTime.Now;
-						aMemberModel.ModifiedDateTime = DateTime.Now;
-						aMemberModel.CreatedUserId = userId;//TODO - set to 0
-						aMemberModel.ModifiedUserId = userId;//TODO - set to 0
-						var dbMember = new MemberContext();
-						dbMember.Member.Add(aMemberModel);
-						dbMember.SaveChanges();
-					}
+					aMemberModel.UserId = userId;
+					aMemberModel.CreatedDateTime = DateTime.Now;
+					aMemberModel.ModifiedDateTime = DateTime.Now;
+					aMemberModel.CreatedUserId = userId;//TODO - set to 0
+					aMemberModel.ModifiedUserId = userId;//TODO - set to 0
+					var dbMember = new MemberContext();
+					dbMember.Member.Add(aMemberModel);
+					dbMember.SaveChanges();
+				}
 
-					WebSecurity.Login(model.LoginModel.UserName, model.LoginModel.Password);
-					return RedirectToAction("Index", "Home");
-				}
-				catch (MembershipCreateUserException e)
-				{
-					ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
-				}
+				WebSecurity.Login(localMember.LoginModel.UserName, localMember.LoginModel.Password);
+				//return RedirectToAction("Index", "Home");
+				return Json(new { success = true, supportAlert = true, alertText = "Change Password Succeed.", supportRedirect = true, redirectUrl = Url.Action("Index", "Product") }, JsonRequestBehavior.AllowGet);
 			}
-
+			catch (MembershipCreateUserException e)
+			{
+				ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+			}
+			
 			// If we got this far, something failed, redisplay form
-			return View(model);
+			throw new HttpException(404, "Member Registration Failed");
 		}
-
-		//
-		// POST: /Account/Disassociate
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
@@ -271,17 +314,17 @@ namespace GoPulauV01.Controllers
 
 				if (changePasswordSucceeded)
 				{
-					return Json(new { success = false, responseText = "Change Password Succeed." }, JsonRequestBehavior.AllowGet);
+					return Json(new { success = true, supportAlert = true, alertText = "Change Password Succeed." }, JsonRequestBehavior.AllowGet);
 					//return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
 				}
 				else
 				{
-					return Json(new { success = false, responseText = "Please make sure you enter the correct password." }, JsonRequestBehavior.AllowGet);
+					return Json(new { success = false, supportAlert = true, alertText = "Please make sure you enter the correct password." }, JsonRequestBehavior.AllowGet);
 					//ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
 				}
                 
 			}
-			return Json(new { success = false, responseText = "Change Password Failed." }, JsonRequestBehavior.AllowGet);
+			return Json(new { success = false, supportAlert = true, alertText = "Change Password Failed." }, JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpPost]
@@ -314,12 +357,12 @@ namespace GoPulauV01.Controllers
 					try
 					{
 						dbMember.SaveChanges();
-						//return new JsonResult() { Data = new { success = true, responseText = "Update Member Success." }};
-						return Json(new { success = true, responseText = "Update Member Success." }, JsonRequestBehavior.AllowGet);
+						//return new JsonResult() { Data = new { success = true, alertText = "Update Member Success." }};
+						return Json(new { success = true, supportAlert = true, alertText = "Update Member Success." }, JsonRequestBehavior.AllowGet);
 					}
 					catch (DbEntityValidationException dbEx)
 					{
-						return Json(new { success = false, responseText = "Update Member Failed." }, JsonRequestBehavior.AllowGet);
+						return Json(new { success = false, alertText = "Update Member Failed." }, JsonRequestBehavior.AllowGet);
 						//foreach (var validationErrors in dbEx.EntityValidationErrors)
 						//{
 						//    foreach (var validationError in validationErrors.ValidationErrors)
@@ -334,7 +377,7 @@ namespace GoPulauV01.Controllers
 				}
 				else
 				{
-					return Json(new { success = false, responseText = "Update Member Failed." }, JsonRequestBehavior.AllowGet);
+					return Json(new { success = false, alertText = "Update Member Failed." }, JsonRequestBehavior.AllowGet);
 				}
 			}
 
